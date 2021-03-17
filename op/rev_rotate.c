@@ -1,43 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rotate.c                                           :+:      :+:    :+:   */
+/*   rev_rotate.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mcossu <mcossu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/17 16:08:15 by mcossu            #+#    #+#             */
-/*   Updated: 2021/03/17 17:53:04 by mcossu           ###   ########.fr       */
+/*   Created: 2021/03/17 17:53:23 by mcossu            #+#    #+#             */
+/*   Updated: 2021/03/17 17:56:27 by mcossu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
 
-void	rotate(t_stack *stack)
+void	rev_rotate(t_stack *stack)
 {
 	t_ilst *temp;
 
 	if (!stack || stack->len == 1)
 		return ;
-	temp = stack->ss->next;
-	temp->prev = 0;
-	stack->se->next = stack->ss;
+	temp = stack->se->prev;
+	temp->next = 0;
 	stack->ss->prev = stack->se;
-	stack->ss = temp;
-	stack->se = stack->se->next;
+	stack->se->next = stack->ss;
+	stack->ss = stack->ss->prev;
+	stack->se = temp;
 }
 
-void	ra(t_all *all)
+void	rra(t_all *all)
 {
-	rotate(&all->a);
+	rev_rotate(&all->a);
 }
 
-void	rb(t_all *all)
+void	rrb(t_all *all)
 {
-	rotate(&all->b);
+	rev_rotate(&all->b);
 }
 
-void	rr(t_all *all)
+void	rrr(t_all *all)
 {
-	rotate(&all->a);
-	rotate(&all->b);
+	rev_rotate(&all->a);
+	rev_rotate(&all->b);
 }

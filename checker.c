@@ -6,7 +6,7 @@
 /*   By: mcossu <mcossu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 10:51:52 by mcossu            #+#    #+#             */
-/*   Updated: 2021/03/17 16:36:33 by mcossu           ###   ########.fr       */
+/*   Updated: 2021/03/17 18:07:31 by mcossu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,22 +44,32 @@ void	insert_input(t_all *all, int ac, char **av)
 	all->len = ac - 1;
 }
 
-void	sort_input(t_all *all)
+void	init_input(t_all *all)
 {
-	int		i;
-	int		j;
-	int		temp;
+	int i;
 
 	i = all->len;
 	if (!(all->insort = ft_calloc(all->len, sizeof(int))))
 		exit_error(all);
 	while (--i)
 		all->insort[i] = i;
+}
+
+void	sort_input(t_all *all)
+{
+	int		i;
+	int		j;
+	int		temp;
+
+	i = 0;
+	init_input(all);
 	while (i < all->len)
 	{
 		j = i - 1;
 		while (++j < all->len)
 		{
+			if (all->in[all->insort[i]] > all->in[all->insort[j]])
+				exit_error(all);
 			if (all->in[all->insort[i]] > all->in[all->insort[j]])
 			{
 				temp = all->insort[i];
@@ -119,6 +129,27 @@ void	fill_stack_a(t_all *all)
 	all->a.len = all->len;
 }
 
+void	compute_command(t_all *all, char *line)
+{
+	if (!ft_strncmp(line, ""))
+}
+
+void	get_in(t_all *all)
+{
+	char	*line;
+	int		res;
+
+	line = 0;
+	while ((res = get_next_line(0, &line)) > 0)
+	{
+		compute_command(all, line);
+		free(line);
+		line = 0;
+	}
+	compute_command(all, line);
+	free(line);
+}
+
 int		main(int ac, char **av)
 {
 	t_all	all;
@@ -131,4 +162,5 @@ int		main(int ac, char **av)
 	fill_stack_a(&all);
 	print_input(&all);
 	print_stack(all.a.ss);
+	get_in(&all);
 }

@@ -6,7 +6,7 @@
 /*   By: mcossu <mcossu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 10:51:52 by mcossu            #+#    #+#             */
-/*   Updated: 2021/03/17 15:43:01 by mcossu           ###   ########.fr       */
+/*   Updated: 2021/03/17 16:36:33 by mcossu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,7 @@ void	fill_stack_a(t_all *all)
 		all->a.se = new;
 		i++;
 	}
+	all->a.len = all->len;
 }
 
 int		main(int ac, char **av)

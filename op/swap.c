@@ -1,34 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   struct_def.h                                       :+:      :+:    :+:   */
+/*   swap.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mcossu <mcossu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/16 11:04:19 by mcossu            #+#    #+#             */
-/*   Updated: 2021/03/17 16:35:12 by mcossu           ###   ########.fr       */
+/*   Created: 2021/03/17 15:48:25 by mcossu            #+#    #+#             */
+/*   Updated: 2021/03/17 15:54:07 by mcossu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef STRUCT_DEF_H
-# define STRUCT_DEF_H
+#include "checker.h"
 
-# include "libft/libft.h"
-
-typedef struct	s_stack
+void	swap(t_ilst *stack)
 {
-	int		len;
-	t_ilst	*ss;
-	t_ilst	*se;
-}				t_stack;
+	int		temp;
 
-typedef struct	s_all
+	if (!stack || !stack->next)
+		return ;
+	temp = stack->n;
+	stack->n = stack->next->n;
+	stack->next->n = temp;
+	temp = stack->ri;
+	stack->ri = stack->next->ri;
+	stack->next->ri = temp;
+}
+
+void	sa(t_all *all)
 {
-	int		*in;
-	int		*insort;
-	t_stack	a;
-	t_stack	b;
-	int		len;
-}				t_all;
+	swap(all->a.ss);
+}
 
-#endif
+void	sb(t_all *all)
+{
+	swap(all->b.ss);
+}
+
+void	ss(t_all *all)
+{
+	sa(all);
+	sb(all);
+}

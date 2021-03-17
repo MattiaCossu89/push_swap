@@ -1,6 +1,6 @@
 SRCSPS	=
 
-SRCSCH	=
+SRCSCH	= checker.c
 
 OBJSPS	= ${SRCSPS:.c=.o}
 
@@ -39,7 +39,7 @@ $(PS)	: $(OBJSPS)
 
 $(CH)	: $(OBJSCH)
 		make -C ./libft
-		$(CC) $(OBJSCH) $(LIBFT) checker.c -I $(INCSCH) -o $(CH)
+		$(CC) $(OBJSCH) $(LIBFT)  -I $(INCSCH) -o $(CH)
 		@echo  "$(GREEN)checker is ready$(NC)"
 
 

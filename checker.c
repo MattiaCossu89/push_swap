@@ -6,7 +6,7 @@
 /*   By: mcossu <mcossu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 10:51:52 by mcossu            #+#    #+#             */
-/*   Updated: 2021/03/16 12:35:07 by mcossu           ###   ########.fr       */
+/*   Updated: 2021/03/17 15:31:52 by mcossu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,36 @@ void	insert_input(t_all *all, int ac, char **av)
 		if (!ft_isnumber(av[i]))
 			exit_error(all);
 		all->in[i - 1] = ft_atoi(av[i]);
-		if (ft_strlen(av[i]) != ft_intlen(all->in[i - 1]))
+		if (ft_strlen(av[i]) != (size_t)ft_intlen(all->in[i - 1]))
 			exit_error(all);
+		i++;
+	}
+	all->len = ac - 1;
+}
+
+void	sort_input(t_all *all)
+{
+	int		i;
+	int		j;
+	int		temp;
+
+	i = all->len;
+	if (!(all->insort = ft_calloc(all->len, sizeof(int))))
+		exit_error(all);
+	while (--i)
+		all->insort[i] = i;
+	while (i < all->len)
+	{
+		j = i - 1;
+		while (++j < all->len)
+		{
+			if (all->in[all->insort[i]] > all->in[all->insort[j]])
+			{
+				temp = all->insort[i];
+				all->insort[i] = all->insort[j];
+				all->insort[j] = temp;
+			}
+		}
 		i++;
 	}
 }
@@ -48,9 +76,11 @@ void	print_input(t_all *all)
 	int		i;
 
 	i = 0;
-	while (all->in[i])
+	while (i < all->len)
 	{
-		ft_putnbr_fd(all->in[i], 1);
+		ft_putnbr_fd(all->insort[i], 1);
+		ft_putstr_fd(" -> ", 1);
+		ft_putnbr_fd(all->in[all->insort[i]], 1);
 		ft_putchar_fd('\n', 1);
 		i++;
 	}
@@ -62,7 +92,13 @@ void	fill_stack_a(t_all *all)
 	int		i;
 
 	i = 0;
-	while ()
+	while (all->in[i])
+	{
+		if (!(new = ft_ilst_new(all->in[i])))
+			exit_error(all);
+
+		i++;
+	}
 }
 
 int		main(int ac, char **av)
@@ -73,5 +109,6 @@ int		main(int ac, char **av)
 		exit(0);
 	ft_bzero(&all, sizeof(t_all));
 	insert_input(&all, ac, av);
+	sort_input(&all);
 	print_input(&all);
 }

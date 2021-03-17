@@ -6,7 +6,7 @@
 /*   By: mcossu <mcossu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 11:04:19 by mcossu            #+#    #+#             */
-/*   Updated: 2021/03/16 12:33:24 by mcossu           ###   ########.fr       */
+/*   Updated: 2021/03/17 14:27:12 by mcossu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef struct	s_all
 	int		*insort;
 	t_stack	a;
 	t_stack	b;
+	int		len;
 }				t_all;
 
 #endif

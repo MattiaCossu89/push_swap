@@ -6,7 +6,7 @@
 /*   By: mcossu <mcossu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 11:12:13 by mcossu            #+#    #+#             */
-/*   Updated: 2021/03/16 12:27:10 by mcossu           ###   ########.fr       */
+/*   Updated: 2021/03/17 15:46:52 by mcossu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,13 +57,16 @@ void	ft_ilst_addfront(t_ilst **lst, t_ilst *new)
 
 void	ft_ilst_addback(t_ilst **lst, t_ilst *new)
 {
+	t_ilst *last;
+
 	if (!*lst)
 	{
 		*lst = new;
 		return ;
 	}
-	new->next = ft_ilst_last(*lst);
-	new->next->prev = new;
+	last = ft_ilst_last(*lst);
+	last->next = new;
+	new->prev = last;
 }
 
 void	ft_ilst_clear(t_ilst **lst)

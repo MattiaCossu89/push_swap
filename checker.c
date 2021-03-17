@@ -6,7 +6,7 @@
 /*   By: mcossu <mcossu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 10:51:52 by mcossu            #+#    #+#             */
-/*   Updated: 2021/03/17 15:31:52 by mcossu           ###   ########.fr       */
+/*   Updated: 2021/03/17 15:43:01 by mcossu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,17 +86,34 @@ void	print_input(t_all *all)
 	}
 }
 
+void	print_stack(t_ilst *lst)
+{
+	if (!lst)
+		return ;
+	while (lst)
+	{
+		ft_putnbr_fd(lst->n, 1);
+		ft_putchar_fd('\n', 1);
+		lst = lst->next;
+	}
+}
+
 void	fill_stack_a(t_all *all)
 {
 	t_ilst	*new;
 	int		i;
 
 	i = 0;
-	while (all->in[i])
+	while (i < all->len)
 	{
 		if (!(new = ft_ilst_new(all->in[i])))
 			exit_error(all);
-
+		new->ri = all->insort[i];
+		if (!all->a.ss)
+			ft_ilst_addfront(&all->a.ss, new);
+		else
+			ft_ilst_addback(&all->a.se, new);
+		all->a.se = new;
 		i++;
 	}
 }
@@ -110,5 +127,7 @@ int		main(int ac, char **av)
 	ft_bzero(&all, sizeof(t_all));
 	insert_input(&all, ac, av);
 	sort_input(&all);
+	fill_stack_a(&all);
 	print_input(&all);
+	print_stack(all.a.ss);
 }

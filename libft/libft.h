@@ -6,7 +6,7 @@
 /*   By: mcossu <mcossu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 10:23:26 by mcossu            #+#    #+#             */
-/*   Updated: 2021/03/16 12:25:10 by mcossu           ###   ########.fr       */
+/*   Updated: 2021/03/17 15:34:14 by mcossu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef struct	s_dclst
 typedef struct	s_ilst
 {
 	int				n;
+	int				ri;
 	struct s_ilst	*next;
 	struct s_ilst	*prev;
 }				t_ilst;

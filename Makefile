@@ -1,14 +1,18 @@
 SRCSPS	=
 
-SRCSCH	= checker.c
+SRCSCH	=	checker.c \
+			op/push.c \
+			op/rev_rotate.c \
+			op/rotate.c \
+			op/swap.c
 
 OBJSPS	= ${SRCSPS:.c=.o}
 
 OBJSCH	= ${SRCSCH:.c=.o}
 
-INCSCH	= .
+INCSCH	= ./
 
-INCSPH	= .
+INCSPH	= ./
 
 CC		= gcc
 
@@ -28,7 +32,7 @@ GREEN	= \033[0;32m
 BLUE	= \033[0;34m
 
 %.o		: %.c
-		$(CC) $(FLAGS) -c $< -o ${<:.c=.o} -I $(INCS)
+		$(CC) $(FLAGS) -I $(INCSCH) -c $< -o ${<:.c=.o} -I $(INCS)
 
 all		: $(CH) $(PS)
 

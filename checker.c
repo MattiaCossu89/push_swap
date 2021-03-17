@@ -6,7 +6,7 @@
 /*   By: mcossu <mcossu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 10:51:52 by mcossu            #+#    #+#             */
-/*   Updated: 2021/03/17 18:07:31 by mcossu           ###   ########.fr       */
+/*   Updated: 2021/03/17 19:03:47 by mcossu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,7 +131,30 @@ void	fill_stack_a(t_all *all)
 
 void	compute_command(t_all *all, char *line)
 {
-	if (!ft_strncmp(line, ""))
+	if (!ft_strncmp(line, "sa", 4))
+		sa(all);
+	else if (!ft_strncmp(line, "sb", 4))
+		sb(all);
+	else if (!ft_strncmp(line, "ss", 4))
+		ss(all);
+	else if (!ft_strncmp(line, "pa", 4))
+		pa(all);
+	else if (!ft_strncmp(line, "pb", 4))
+		pb(all);
+	else if (!ft_strncmp(line, "ra", 4))
+		ra(all);
+	else if (!ft_strncmp(line, "rb", 4))
+		rb(all);
+	else if (!ft_strncmp(line, "rr", 4))
+		rr(all);
+	else if (!ft_strncmp(line, "rra", 4))
+		rra(all);
+	else if (!ft_strncmp(line, "rrb", 4))
+		rrb(all);
+	else if (!ft_strncmp(line, "rrr", 4))
+		rrr(all);
+	else
+		exit_error(all);
 }
 
 void	get_in(t_all *all)
@@ -142,11 +165,15 @@ void	get_in(t_all *all)
 	line = 0;
 	while ((res = get_next_line(0, &line)) > 0)
 	{
+		ft_putstr_fd("----------\n", 1);
 		compute_command(all, line);
+		print_stack(all->a.ss);
+		ft_putstr_fd("*******\n", 1);
+		print_stack(all->b.ss);
+		ft_putstr_fd("----------\n", 1);
 		free(line);
 		line = 0;
 	}
-	compute_command(all, line);
 	free(line);
 }
 

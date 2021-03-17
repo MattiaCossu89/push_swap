@@ -6,7 +6,7 @@
 /*   By: mcossu <mcossu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 16:08:15 by mcossu            #+#    #+#             */
-/*   Updated: 2021/03/17 17:53:04 by mcossu           ###   ########.fr       */
+/*   Updated: 2021/03/17 18:59:15 by mcossu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	rotate(t_stack *stack)
 	stack->ss->prev = stack->se;
 	stack->ss = temp;
 	stack->se = stack->se->next;
+	stack->se->next = 0;
 }
 
 void	ra(t_all *all)

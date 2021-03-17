@@ -6,7 +6,7 @@
 /*   By: mcossu <mcossu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 15:54:22 by mcossu            #+#    #+#             */
-/*   Updated: 2021/03/17 17:35:27 by mcossu           ###   ########.fr       */
+/*   Updated: 2021/03/17 19:02:14 by mcossu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ void	push(t_ilst **fromlst, t_ilst **tolst)
 	if (!fromlst || !*fromlst)
 		return ;
 	temp = *fromlst;
-	temp->next = 0;
 	(*fromlst) = (*fromlst)->next;
+	temp->next = 0;
 	if (*fromlst)
 		(*fromlst)->prev = 0;
 	ft_ilst_addfront(tolst, temp);

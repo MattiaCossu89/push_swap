@@ -65,10 +65,10 @@ void	sort_input(t_all *all)
 	init_input(all);
 	while (i < all->len)
 	{
-		j = i - 1;
+		j = i;
 		while (++j < all->len)
 		{
-			if (all->in[all->insort[i]] > all->in[all->insort[j]])
+			if (all->in[all->insort[i]] == all->in[all->insort[j]])
 				exit_error(all);
 			if (all->in[all->insort[i]] > all->in[all->insort[j]])
 			{
@@ -177,12 +177,34 @@ void	get_in(t_all *all)
 	free(line);
 }
 
+void	check_out(t_all *all)
+{
+	t_ilst *a;
+
+	if (all->b.ss)
+	{
+		ft_putstr_fd(RED"KO\n"NRM, 1);
+		exit_all(all);
+	}
+	a = all->a.ss;
+	while (a->next)
+	{
+		if (a->n > a->next->n)
+		{
+			ft_putstr_fd(RED"KO\n"NRM, 1);
+			exit_all(all);
+		}
+		a = a->next;
+	}
+	ft_putstr_fd(GRN"OK\n"NRM, 1);
+}
+
 int		main(int ac, char **av)
 {
 	t_all	all;
 
 	if (ac == 1)
-		exit(0);
+		exit(1);
 	ft_bzero(&all, sizeof(t_all));
 	insert_input(&all, ac, av);
 	sort_input(&all);
@@ -190,4 +212,6 @@ int		main(int ac, char **av)
 	print_input(&all);
 	print_stack(all.a.ss);
 	get_in(&all);
+	check_out(&all);
+	return (0);
 }

@@ -10,9 +10,9 @@ OBJSPS	= ${SRCSPS:.c=.o}
 
 OBJSCH	= ${SRCSCH:.c=.o}
 
-INCSCH	= ./
+INCSCH	= includes
 
-INCSPH	= ./
+INCSPH	= .
 
 CC		= gcc
 
@@ -32,7 +32,7 @@ GREEN	= \033[0;32m
 BLUE	= \033[0;34m
 
 %.o		: %.c
-		$(CC) $(FLAGS) -I $(INCSCH) -c $< -o ${<:.c=.o} -I $(INCS)
+		$(CC) $(FLAGS) -I $(INCSCH) -c $< -o ${<:.c=.o}
 
 all		: $(CH) $(PS)
 
@@ -43,7 +43,7 @@ $(PS)	: $(OBJSPS)
 
 $(CH)	: $(OBJSCH)
 		make -C ./libft
-		$(CC) $(OBJSCH) $(LIBFT)  -I $(INCSCH) -o $(CH)
+		$(CC) $(OBJSCH) $(LIBFT) -I $(INCSCH) -o $(CH)
 		@echo  "$(GREEN)checker is ready$(NC)"
 
 

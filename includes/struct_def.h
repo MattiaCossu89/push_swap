@@ -13,7 +13,7 @@
 #ifndef STRUCT_DEF_H
 # define STRUCT_DEF_H
 
-# include "libft/libft.h"
+# include "../libft/libft.h"
 
 typedef struct	s_stack
 {

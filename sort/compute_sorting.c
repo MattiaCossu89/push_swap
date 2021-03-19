@@ -19,13 +19,17 @@ void	print_max_sub(t_all *all)
 	int		i;
 
 	i = 0;
-	it = all->m.subs;
-	while (it->next)
-		it = it->next;
-	all->m.active = it->cont;
-	while (i < all->m.lens[all->m.len - 1])
+	while (i < all->m.len)
 	{
 		ft_putnbr_fd(all->m.active[i]->n, 1);
+		ft_putstr_fd(" ", 1);
+		i++;
+	}
+	ft_putstr_fd("\n", 1);
+	i = 0;
+	while (i < all->rm.len)
+	{
+		ft_putnbr_fd(all->rm.active[i]->n, 1);
 		ft_putstr_fd(" ", 1);
 		i++;
 	}
@@ -142,22 +146,57 @@ void	find_max_sub(t_all *all)
 	}
 }
 
-void	compute_sorting(t_all *all)
+void	clear_lists(t_all *all)
 {
-	int		i;
 	t_lst	*it;
 
-	find_max_sub(all);
 	it = all->m.subs;
-	while (it)
+	while (it->next && (all->m.subs = it->next))
 	{
-		all->m.active = it->cont;
-		i = -1;
-		while (all->m.active[++i])
-			printf("%d ", all->m.active[i]->n);
-		printf("\n");
-		it = it->next;
+		free(it->cont);
+		free(it);
+		it = all->m.subs;
 	}
-	printf("---------\n");
+	it = all->rm.subs;
+	while (it->next && (all->rm.subs = it->next))
+	{
+		free(it->cont);
+		free(it);
+		it = all->rm.subs;
+	}
+	all->m.active = all->m.subs->cont;
+	all->rm.active = all->rm.subs->cont;
+	free(all->m.subs);
+	free(all->rm.subs);
+	all->m.len = all->m.lens[all->m.len - 1];
+	all->rm.len = all->rm.lens[all->rm.len - 1];
+	free(all->m.lens);
+	free(all->rm.lens);
+}
+
+void	remove_last(t_all *all)
+{
+	int		i;
+
+	i = -1;
+	while (++i < all->rm.len)
+	{
+		if (all->rm.active[i] == all->m.active[all->m.len - 1])
+		{
+			ft_memmove(&all->rm.active[i], &all->rm.active[i + 1],
+						(all->rm.len - i - 1) * sizeof(t_ilst *));
+			all->rm.len--;
+			all->rm.active[all->rm.len] = 0;
+			return ;
+		}
+	}
+}
+
+void	compute_sorting(t_all *all)
+{
+	find_max_sub(all);
+	find_max_sub_rev(all);
+	clear_lists(all);
+	remove_last(all);
 	print_max_sub(all);
 }

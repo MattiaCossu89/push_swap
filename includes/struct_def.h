@@ -40,6 +40,7 @@ typedef struct	s_all
 	t_stack	a;
 	t_stack	b;
 	t_maxs	m;
+	t_maxs	rm;
 	int		len;
 }				t_all;
 

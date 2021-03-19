@@ -4,6 +4,7 @@ SRCSPS	=	push_swap.c \
 			op/rotate.c \
 			op/swap.c \
 			sort/compute_sorting.c \
+			sort/find_max_sub_rev.c \
 			utils/exit.c \
 			utils/fill_input.c \
 			utils/print.c

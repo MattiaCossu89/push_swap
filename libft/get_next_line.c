@@ -18,7 +18,7 @@ char	*ft_realloc(char **ptr, size_t n, size_t bufflen)
 	size_t	i;
 
 	i = 0;
-	if (!(temp = (char *)malloc((n) * sizeof(char))))
+	if (!(temp = (char *)ft_calloc((n), sizeof(char))))
 		return (0);
 	while (i < (n - bufflen - 1))
 	{

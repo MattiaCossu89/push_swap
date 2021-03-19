@@ -22,12 +22,24 @@ typedef struct	s_stack
 	t_ilst	*se;
 }				t_stack;
 
+typedef struct	s_maxs
+{
+	int		i;
+	int		ifound;
+	int		len;
+	int		*lens;
+	t_lst	*subs;
+	t_lst	*found;
+	t_ilst	**active;
+}				t_maxs;
+
 typedef struct	s_all
 {
 	int		*in;
-	int		*insort;
+	t_ilst	**insort;
 	t_stack	a;
 	t_stack	b;
+	t_maxs	m;
 	int		len;
 }				t_all;
 

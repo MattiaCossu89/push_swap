@@ -1,10 +1,21 @@
-SRCSPS	=
+SRCSPS	=	push_swap.c \
+			op/push.c \
+			op/rev_rotate.c \
+			op/rotate.c \
+			op/swap.c \
+			sort/compute_sorting.c \
+			utils/exit.c \
+			utils/fill_input.c \
+			utils/print.c
 
 SRCSCH	=	checker.c \
 			op/push.c \
 			op/rev_rotate.c \
 			op/rotate.c \
-			op/swap.c
+			op/swap.c \
+			utils/exit.c \
+			utils/fill_input.c \
+			utils/print.c
 
 OBJSPS	= ${SRCSPS:.c=.o}
 
@@ -16,7 +27,7 @@ INCSPH	= .
 
 CC		= gcc
 
-FLAGS	= -Wall -Wextra -Werror
+FLAGS	= #-Wall -Wextra -Werror
 
 LIBFT	= ./libft/libft.a
 
@@ -38,7 +49,7 @@ all		: $(CH) $(PS)
 
 $(PS)	: $(OBJSPS)
 		make -C ./libft
-		$(CC) $(OBJSPS) $(LIBFT) -I $(INCSPS) -o $(PS)
+		$(CC) $(OBJSPS) $(LIBFT) -I $(INCSCH) -o $(PS)
 		@echo  "$(GREEN)push_swap is ready$(NC)"
 
 $(CH)	: $(OBJSCH)

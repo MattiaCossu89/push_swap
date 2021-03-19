@@ -98,6 +98,8 @@ void			ft_lstdelone(t_lst *lst, void (*del)(void *));
 void			ft_lstclear(t_lst **lst, void (*del)(void *));
 t_lst			*ft_lstfind(t_lst *lst, void *data, int (*f)(void *, void *));
 void			ft_lstiter(t_lst *lst, void (*f)(void *));
+void			ft_lstrm_ifnode(t_lst **head, t_lst *torm,
+								void (*del)(void *));
 void			ft_lstrm_if(t_lst **head, void *data,
 				int (*cmp)(void *, void *), void (*del)(void *));
 t_lst			*ft_lstrm(t_lst **lst,

@@ -96,7 +96,7 @@ void	discard(t_all *all)
 		{
 			ft_lstrm_ifnode(&all->m.subs, it, free);
 			ft_memmove(&all->m.lens[i], &all->m.lens[i + 1],
-						all->m.len - i - 1);
+						sizeof(int) * (all->m.len - i - 1));
 			all->m.len--;
 			all->m.lens[all->m.len] = 0;
 		}

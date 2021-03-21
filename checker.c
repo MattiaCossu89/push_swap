@@ -48,12 +48,12 @@ void	get_in(t_all *all)
 	line = 0;
 	while ((res = get_next_line(0, &line)) > 0)
 	{
-		ft_putstr_fd("----------\n", 1);
+		// ft_putstr_fd("----------\n", 1);
 		compute_command(all, line);
-		print_stack(all->a.ss);
-		ft_putstr_fd("*******\n", 1);
-		print_stack(all->b.ss);
-		ft_putstr_fd("----------\n", 1);
+		// print_stack(all->a.ss);
+		// ft_putstr_fd("*******\n", 1);
+		// print_stack(all->b.ss);
+		// ft_putstr_fd("----------\n", 1);
 		free(line);
 		line = 0;
 	}
@@ -67,15 +67,15 @@ void	check_out(t_all *all)
 	if (all->b.ss)
 	{
 		ft_putstr_fd(RED"KO\n"NRM, 1);
-		exit_all(all);
+		return ;
 	}
 	a = all->a.ss;
-	while (a->next)
+	while (a != all->a.ss->prev)
 	{
 		if (a->n > a->next->n)
 		{
 			ft_putstr_fd(RED"KO\n"NRM, 1);
-			exit_all(all);
+			return ;
 		}
 		a = a->next;
 	}
@@ -91,10 +91,14 @@ int		main(int ac, char **av)
 	ft_bzero(&all, sizeof(t_all));
 	insert_input(&all, ac, av);
 	fill_stack_a(&all);
-	sort_input(&all);
-	print_input(&all);
-	print_stack(all.a.ss);
+	// sort_input(&all);
+	// print_input(&all);
+	// print_stack(all.a.ss);
 	get_in(&all);
 	check_out(&all);
+	print_stack(all.a.ss);
+	printf("------------\n");
+	print_stack(all.b.ss);
+	exit_all(&all);
 	return (0);
 }

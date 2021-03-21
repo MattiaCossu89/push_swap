@@ -129,10 +129,12 @@ void	set_lst_active(t_ilst *it, t_all *all)
 void	find_max_sub(t_all *all)
 {
 	t_ilst		*it;
+	t_ilst		*first;
 
 	if (!(all->m.active = ft_calloc(2, sizeof(t_ilst *))))
 		exit_error(all);
 	it = all->a.ss->next;
+	first = all->a.ss;
 	all->m.active[0] = all->a.ss;
 	if (!(all->m.subs = ft_lstnew(all->m.active)))
 		exit_error(all);
@@ -140,7 +142,7 @@ void	find_max_sub(t_all *all)
 		exit_error(all);
 	all->m.len = 1;
 	all->m.lens[0] = 1;
-	while (it)
+	while (it != first)
 	{
 		set_lst_active(it, all);
 		it = it->next;
@@ -202,9 +204,5 @@ void	compute_sorting(t_all *all)
 	all->print = 1;
 	// print_max_sub(all);
 	set_stacks(all);
-	// printf("-------------\n");
-	// print_stack(all->a.ss);
-	// printf("*************\n");
-	// print_stack(all->b.ss);
-	// printf("-------------\n");
+	sort(all);
 }

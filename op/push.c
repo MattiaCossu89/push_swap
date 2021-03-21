@@ -19,10 +19,14 @@ void	push(t_ilst **fromlst, t_ilst **tolst)
 	if (!fromlst || !*fromlst)
 		return ;
 	temp = *fromlst;
-	(*fromlst) = (*fromlst)->next;
-	temp->next = 0;
-	if (*fromlst)
+	if (*fromlst == (*fromlst)->next)
+		(*fromlst) = 0;
+	else
+	{
+		(*fromlst) = (*fromlst)->next;
 		(*fromlst)->prev = temp->prev;
+		temp->prev->next = (*fromlst);
+	}
 	ft_ilst_addfront(tolst, temp);
 }
 
@@ -36,8 +40,6 @@ void	pa(t_all *all)
 	if (!all->a.ss)
 		check = 1;
 	push(&all->b.ss, &all->a.ss);
-	if (check)
-		all->a.se = all->a.ss;
 	all->b.len--;
 	all->a.len++;
 	if (all->print)
@@ -54,8 +56,6 @@ void	pb(t_all *all)
 	if (!all->b.ss)
 		check = 1;
 	push(&all->a.ss, &all->b.ss);
-	if (check)
-		all->b.se = all->b.ss;
 	all->b.len++;
 	all->a.len--;
 	if (all->print)

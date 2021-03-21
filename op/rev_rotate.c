@@ -18,13 +18,7 @@ void	rev_rotate(t_stack *stack)
 
 	if (!stack || stack->len == 1)
 		return ;
-	temp = stack->se->prev;
-	temp->next = 0;
-	stack->ss->prev = stack->se;
-	stack->se->next = stack->ss;
 	stack->ss = stack->ss->prev;
-	stack->ss->prev = 0;
-	stack->se = temp;
 }
 
 void	rra(t_all *all)

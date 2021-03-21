@@ -33,6 +33,12 @@ typedef struct	s_maxs
 	t_ilst	**active;
 }				t_maxs;
 
+typedef struct	s_sol
+{
+	int		br;
+	int		ar;
+}				t_sol;
+
 typedef struct	s_all
 {
 	int		*in;
@@ -45,4 +51,6 @@ typedef struct	s_all
 	char	print;
 }				t_all;
 
+# define ABS(x) (x < 0 ? -x : x)
+# define SIGN(x) (x < 0 ? -1 : 1)
 #endif

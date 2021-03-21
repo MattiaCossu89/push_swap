@@ -19,6 +19,8 @@ t_ilst	*ft_ilst_new(int num)
 	if (!(new = ft_calloc(1, sizeof(t_ilst))))
 		return (0);
 	new->n = num;
+	new->prev = new;
+	new->next = new;
 	return (new);
 }
 
@@ -47,11 +49,15 @@ void	ft_ilst_addfront(t_ilst **lst, t_ilst *new)
 	if (!*lst)
 	{
 		*lst = new;
+		new->prev = new;
+		new->next = new;
 		return ;
 	}
 	temp = *lst;
 	*lst = new;
 	new->next = temp;
+	new->prev = temp->prev;
+	new->prev->next = new;
 	temp->prev = new;
 }
 
@@ -62,38 +68,46 @@ void	ft_ilst_addback(t_ilst **lst, t_ilst *new)
 	if (!*lst)
 	{
 		*lst = new;
+		new->next = new;
+		new->prev = new;
 		return ;
 	}
-	last = ft_ilst_last(*lst);
-	last->next = new;
+	last = (*lst)->prev;
 	new->prev = last;
+	last->next = new;
+	new->next = (*lst);
+	(*lst)->prev = new;
 }
 
 void	ft_ilst_clear(t_ilst **lst)
 {
 	t_ilst *temp;
+	t_ilst *first;
 
 	if (!*lst)
 		return ;
-	while ((*lst)->prev)
-		(*lst) = (*lst)->prev;
-	while (*lst)
+	first = (*lst);
+	(*lst) = (*lst)->next;
+	while (*lst != first)
 	{
 		temp = *lst;
 		(*lst) = (*lst)->next;
 		free(temp);
 	}
+	free(*lst);
+	*lst = 0;
 }
 
 t_ilst	*ft_dup_ilst(t_ilst *lst)
 {
 	t_ilst *new;
 	t_ilst *temp;
+	t_ilst *first;
 
-	if (!lst)
+	if (!(new = 0) && !lst)
 		return (0);
-	new = 0;
-	while (lst->next)
+	first = lst->prev;
+	while (lst != first)
 	{
 		if (!(temp = ft_ilst_new(lst->n)))
 		{
@@ -101,8 +115,14 @@ t_ilst	*ft_dup_ilst(t_ilst *lst)
 			return (0);
 		}
 		ft_ilst_addback(&new, temp);
-		new = temp;
+		temp->ri = lst->ri;
 		lst = lst->next;
 	}
-	return (ft_ilst_first(new));
+	if (!(temp = ft_ilst_new(lst->n)))
+		ft_ilst_clear(&new);
+	if (!temp)
+		return (0);
+	ft_ilst_addback(&new, temp);
+	temp->ri = lst->ri;
+	return (new);
 }

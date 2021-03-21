@@ -93,10 +93,12 @@ void	set_lst_active_rev(t_ilst *it, t_all *all)
 void	find_max_sub_rev(t_all *all)
 {
 	t_ilst		*it;
+	t_ilst		*first;
 
 	if (!(all->rm.active = ft_calloc(2, sizeof(t_ilst *))))
 		exit_error(all);
 	it = all->a.ss->next;
+	first = all->a.ss;
 	all->rm.active[0] = all->a.ss;
 	if (!(all->rm.subs = ft_lstnew(all->rm.active)))
 		exit_error(all);
@@ -104,7 +106,7 @@ void	find_max_sub_rev(t_all *all)
 		exit_error(all);
 	all->rm.len = 1;
 	all->rm.lens[0] = 1;
-	while (it)
+	while (it != first)
 	{
 		set_lst_active_rev(it, all);
 		it = it->next;

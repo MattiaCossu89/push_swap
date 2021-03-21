@@ -20,17 +20,17 @@ void	push_back_minnmax(t_all *all)
 {
 	if (all->a.ss->ri != 0 && all->a.ss->ri != all->len - 1)
 	{
-		if (all->b.se->ri == 0)
+		if (all->b.ss->prev->ri == 0)
 			push_back_fnl(all);
-		else if (all->b.se->ri == all->len - 1)
+		else if (all->b.ss->prev->ri == all->len - 1)
 			push_back_lnf(all);
 	}
-	else if (all->a.ss->ri == 0 && all->b.se->ri == all->len - 1)
+	else if (all->a.ss->ri == 0 && all->b.ss->prev->ri == all->len - 1)
 	{
 			rrb(all);
 			pa(all);
 	}
-	else if (all->a.ss->ri == all->len - 1 && all->b.se->ri == 0)
+	else if (all->a.ss->ri == all->len - 1 && all->b.ss->prev->ri == 0)
 	{
 			ra(all);
 			rrb(all);
@@ -45,7 +45,7 @@ void	push_nbrs_between(t_all *all, int i)
 	tmp = all->a.ss;
 	if (!all->b.ss)
 		return ;
-	while (all->b.ss && all->b.ss->ri > all->a.se->ri && (i == all->m.len ||
+	while (all->b.ss && all->b.ss->ri > all->a.ss->prev->ri && (i == all->m.len ||
 			all->b.ss->ri < all->m.active[i]->ri))
 	{
 		if (all->a.ss != tmp && all->a.ss->ri < all->b.ss->ri)

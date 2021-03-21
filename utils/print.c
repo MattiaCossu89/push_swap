@@ -17,12 +17,17 @@ void	print_input(t_all *all)
 
 void	print_stack(t_ilst *lst)
 {
+	t_ilst *last;
+
 	if (!lst)
 		return ;
-	while (lst)
+	last = lst->prev;
+	while (lst != last)
 	{
 		ft_putnbr_fd(lst->n, 1);
 		ft_putchar_fd('\n', 1);
 		lst = lst->next;
 	}
+	ft_putnbr_fd(lst->n, 1);
+	ft_putchar_fd('\n', 1);
 }

@@ -90,8 +90,8 @@ int		main(int ac, char **av)
 		exit(1);
 	ft_bzero(&all, sizeof(t_all));
 	insert_input(&all, ac, av);
-	sort_input(&all);
 	fill_stack_a(&all);
+	sort_input(&all);
 	print_input(&all);
 	print_stack(all.a.ss);
 	get_in(&all);

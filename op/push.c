@@ -22,7 +22,7 @@ void	push(t_ilst **fromlst, t_ilst **tolst)
 	(*fromlst) = (*fromlst)->next;
 	temp->next = 0;
 	if (*fromlst)
-		(*fromlst)->prev = 0;
+		(*fromlst)->prev = temp->prev;
 	ft_ilst_addfront(tolst, temp);
 }
 
@@ -40,6 +40,8 @@ void	pa(t_all *all)
 		all->a.se = all->a.ss;
 	all->b.len--;
 	all->a.len++;
+	if (all->print)
+		ft_putstr_fd("pa\n", 1);
 }
 
 void	pb(t_all *all)
@@ -56,4 +58,6 @@ void	pb(t_all *all)
 		all->b.se = all->b.ss;
 	all->b.len++;
 	all->a.len--;
+	if (all->print)
+		ft_putstr_fd("pb\n", 1);
 }

@@ -26,6 +26,7 @@ void	print_max_sub(t_all *all)
 		i++;
 	}
 	ft_putstr_fd("\n", 1);
+	ft_putstr_fd("-------------------------\n", 1);
 	i = 0;
 	while (i < all->rm.len)
 	{
@@ -198,5 +199,12 @@ void	compute_sorting(t_all *all)
 	find_max_sub_rev(all);
 	clear_lists(all);
 	remove_last(all);
-	print_max_sub(all);
+	all->print = 1;
+	// print_max_sub(all);
+	set_stacks(all);
+	// printf("-------------\n");
+	// print_stack(all->a.ss);
+	// printf("*************\n");
+	// print_stack(all->b.ss);
+	// printf("-------------\n");
 }

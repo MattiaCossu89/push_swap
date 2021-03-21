@@ -29,15 +29,21 @@ void	swap(t_ilst *stack)
 void	sa(t_all *all)
 {
 	swap(all->a.ss);
+	if (all->print)
+		ft_putstr_fd("sa\n", 1);
 }
 
 void	sb(t_all *all)
 {
 	swap(all->b.ss);
+	if (all->print)
+		ft_putstr_fd("sb\n", 1);
 }
 
 void	ss(t_all *all)
 {
 	sa(all);
 	sb(all);
+	if (all->print)
+		ft_putstr_fd("ss\n", 1);
 }

@@ -30,15 +30,21 @@ void	rotate(t_stack *stack)
 void	ra(t_all *all)
 {
 	rotate(&all->a);
+	if (all->print)
+		ft_putstr_fd("ra\n", 1);
 }
 
 void	rb(t_all *all)
 {
 	rotate(&all->b);
+	if (all->print)
+		ft_putstr_fd("rb\n", 1);
 }
 
 void	rr(t_all *all)
 {
 	rotate(&all->a);
 	rotate(&all->b);
+	if (all->print)
+		ft_putstr_fd("rr\n", 1);
 }

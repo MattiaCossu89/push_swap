@@ -42,6 +42,7 @@ typedef struct	s_all
 	t_maxs	m;
 	t_maxs	rm;
 	int		len;
+	char	print;
 }				t_all;
 
 #endif

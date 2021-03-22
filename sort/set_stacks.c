@@ -4,20 +4,41 @@ void	push_back_fnl(t_all *all)
 {
 	rrb(all);
 	pa(all);
-	rrb(all);
-	pa(all);
+	if (all->b.ss->prev->ri == all->len - 1)
+	{
+		rrb(all);
+		pa(all);
+	}
 }
 
 void	push_back_lnf(t_all *all)
 {
 	rrb(all);
-	rrb(all);
+	if (all->b.ss->prev->ri == 0)
+	{
+		rrb(all);
+		pa(all);
+	}
 	pa(all);
-	pa(all);
+}
+
+void	push_back_first(t_all * all)
+{
+	if (!all->b.ss)
+		return ;
+	if (all->b.ss->ri == 0)
+		pa(all);
+	if (all->b.ss && all->b.ss->ri == all->len - 1)
+		pa(all);
+	if (all->b.ss && all->b.ss->ri == 0)
+		pa(all);
 }
 
 void	push_back_minnmax(t_all *all)
 {
+	push_back_first(all);
+	if (!all->b.ss)
+		return ;
 	if (all->a.ss->ri != 0 && all->a.ss->ri != all->len - 1)
 	{
 		if (all->b.ss->prev->ri == 0)
@@ -73,21 +94,18 @@ void	set_stacks(t_all *all)
 	{
 		if (i < all->m.len && all->a.ss == all->m.active[i] && ++i)
 			compute_ra(all, i);
-		else if (all->m.active[0]->ri != 0 && all->a.ss->ri == 0
-			|| (all->a.ss->ri == all->len - 1 &&
-			all->a.ss->next && all->a.ss->next->ri != 0))
+		else if ((all->m.active[0]->ri != 0 && all->a.ss->ri == 0) ||
+		(all->a.ss->ri == all->len - 1 && all->m.active[all->m.len - 1]->ri
+		!= all->len - 1))
 		{
 			pb(all);
-			if (all->a.ss->ri == all->m.active[i]->ri && ++i)
-			{
+			if (all->b.len > 1 && i < all->m.len && all->a.ss->ri == all->m.active[i]->ri && ++i)
 				rr(all);
-				push_nbrs_between(all, i);
-			}
-			else if (all->b.len > 1)
+			else if (all->b.len > 1 && all->a.ss->ri != all->m.active[0]->ri)
 				rb(all);
+			push_nbrs_between(all, i);
 		}
-		else if ((i >= all->m.len && (all->a.ss == all->m.active[0]))
-				|| (i == all->m.len - 1 && all->a.ss->ri == all->len - 1))
+		else if ((i >= all->m.len && (all->a.ss == all->m.active[0])))
 			break ;
 		else
 			pb(all);

@@ -28,6 +28,16 @@ void	print_max_sub(t_all *all)
 	ft_putstr_fd("\n", 1);
 }
 
+void	print_all(t_all *all)
+{
+	int i;
+
+	i = 0;
+	while (i < all->m.len)
+		printf("%d ", all->m.lens[i++]);
+		printf("\n");
+}
+
 char	find_case(t_ilst *it, t_all *all)
 {
 	t_lst	*lit;

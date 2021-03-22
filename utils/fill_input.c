@@ -78,8 +78,7 @@ void	fill_stack_a(t_all *all)
 		if (!all->a.ss)
 			ft_ilst_addfront(&all->a.ss, new);
 		else
-			ft_ilst_addback(&all->a.se, new);
-		all->a.se = new;
+			ft_ilst_addback(&all->a.ss, new);
 		i++;
 	}
 	all->a.len = all->len;

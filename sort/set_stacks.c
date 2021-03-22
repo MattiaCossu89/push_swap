@@ -100,10 +100,12 @@ void	set_stacks(t_all *all)
 		{
 			pb(all);
 			if (all->b.len > 1 && i < all->m.len && all->a.ss->ri == all->m.active[i]->ri && ++i)
+			{
 				rr(all);
+				push_nbrs_between(all, i);
+			}
 			else if (all->b.len > 1 && all->a.ss->ri != all->m.active[0]->ri)
 				rb(all);
-			push_nbrs_between(all, i);
 		}
 		else if ((i >= all->m.len && (all->a.ss == all->m.active[0])))
 			break ;

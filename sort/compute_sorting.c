@@ -192,5 +192,8 @@ void	compute_sorting(t_all *all)
 	all->print = 1;
 	// print_max_sub(all);
 	set_stacks(all);
+	print_stack(all->a.ss);
+	sleep(5);
 	sort(all);
+	print_stack(all->a.ss);
 }

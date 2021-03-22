@@ -29,7 +29,7 @@ void	find_pos_a(t_all *all, t_ilst *tof, t_sol *sol)
 		sol->ar = cr;
 }
 
-int		max(int a, int b)
+int		min(int a, int b)
 {
 	if (a < b)
 		return (a);
@@ -48,9 +48,9 @@ void	get_best_sol(t_all *all, t_sol *sol, t_ilst *tof, int i)
 	count = 0;
 	counts = 0;
 	if (SIGN(new_sol.ar) == SIGN(new_sol.br) || new_sol.equ)
-		count = max(ABS(new_sol.ar), ABS(new_sol.br));
+		count = min(ABS(new_sol.ar), ABS(new_sol.br));
 	if (SIGN(sol->ar) == SIGN(sol->br) || sol->equ)
-		counts = max(ABS(new_sol.ar), ABS(new_sol.br));
+		counts = min(ABS(sol->ar), ABS(sol->br));
 	if ((ABS(new_sol.ar) + ABS(new_sol.br) - count) < (ABS(sol->ar) + ABS(sol->br) - counts))
 	{
 		sol->ar = new_sol.ar;
@@ -169,8 +169,16 @@ void	sort(t_all *all)
 	int		i;
 
 	i = 0;
+	sol.ar = all->len;
+	sol.br = all->len;
 	while (all->b.ss)
 	{
+		// if (!(all->a.ss->ri < all->a.ss->next->ri && all->a.ss->ri > all->a.ss->prev->ri))
+		// {
+		// 	printf("%d %d %d\n", all->a.ss->ri, sol.ar, sol.br);
+		// 	i++;
+		// 	sleep(100);
+		// }
 		find_best_candidate(all, &sol);
 		// printf("--%d %d %d [%d]\n", all->a.ss->prev->ri, all->a.ss->ri, all->a.ss->next->ri, all->b.ss->ri);
 		apply_sort(all, sol);

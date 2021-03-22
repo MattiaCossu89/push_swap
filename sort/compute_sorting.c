@@ -26,15 +26,6 @@ void	print_max_sub(t_all *all)
 		i++;
 	}
 	ft_putstr_fd("\n", 1);
-	ft_putstr_fd("-------------------------\n", 1);
-	i = 0;
-	while (i < all->rm.len)
-	{
-		ft_putnbr_fd(all->rm.active[i]->n, 1);
-		ft_putstr_fd(" ", 1);
-		i++;
-	}
-	ft_putstr_fd("\n", 1);
 }
 
 char	find_case(t_ilst *it, t_all *all)
@@ -160,21 +151,10 @@ void	clear_lists(t_all *all)
 		free(it);
 		it = all->m.subs;
 	}
-	it = all->rm.subs;
-	while (it->next && (all->rm.subs = it->next))
-	{
-		free(it->cont);
-		free(it);
-		it = all->rm.subs;
-	}
 	all->m.active = all->m.subs->cont;
-	all->rm.active = all->rm.subs->cont;
 	free(all->m.subs);
-	free(all->rm.subs);
 	all->m.len = all->m.lens[all->m.len - 1];
-	all->rm.len = all->rm.lens[all->rm.len - 1];
 	free(all->m.lens);
-	free(all->rm.lens);
 }
 
 void	remove_last(t_all *all)
@@ -198,9 +178,7 @@ void	remove_last(t_all *all)
 void	compute_sorting(t_all *all)
 {
 	find_max_sub(all);
-	find_max_sub_rev(all);
 	clear_lists(all);
-	remove_last(all);
 	all->print = 1;
 	// print_max_sub(all);
 	set_stacks(all);

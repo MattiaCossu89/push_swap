@@ -75,6 +75,7 @@ void	check_out(t_all *all)
 		if (a->n > a->next->n)
 		{
 			ft_putstr_fd(RED"KO\n"NRM, 1);
+			printf("%d\n", a->n);
 			return ;
 		}
 		a = a->next;

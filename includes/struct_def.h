@@ -37,6 +37,7 @@ typedef struct	s_sol
 {
 	int		br;
 	int		ar;
+	char	equ;
 }				t_sol;
 
 typedef struct	s_all

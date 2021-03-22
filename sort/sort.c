@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-int		find_pos_a(t_all *all, t_ilst *tof)
+void	find_pos_a(t_all *all, t_ilst *tof, t_sol *sol)
 {
 	int		cr;
 	int		crr;
@@ -11,19 +11,22 @@ int		find_pos_a(t_all *all, t_ilst *tof)
 	crr = 0;
 	r = all->a.ss;
 	rr = all->a.ss;
-	while (tof->ri > r->ri)
+	while (!(tof->ri > r->prev->ri && tof->ri < r->ri))
 	{
 		cr++;
 		r = r->next;
 	}
-	while (tof->ri < rr->prev->ri)
+	while (!(tof->ri > rr->prev->ri && tof->ri < rr->ri))
 	{
 		crr--;
 		rr = rr->prev;
 	}
-	if (ABS(cr) < ABS(crr))
-		return (crr);
-	return (cr);
+	// if (ABS(cr) == ABS(crr))
+	// 	sol->equ = 1;
+	if (ABS(cr) > ABS(crr))
+		sol->ar = crr;
+	else
+		sol->ar = cr;
 }
 
 int		max(int a, int b)
@@ -40,25 +43,26 @@ void	get_best_sol(t_all *all, t_sol *sol, t_ilst *tof, int i)
 	int		counts;
 
 	new_sol.br = i;
-	new_sol.ar = find_pos_a(all, tof);
+	new_sol.equ = 0;
+	find_pos_a(all, tof, &new_sol);
 	count = 0;
 	counts = 0;
-	if (SIGN(new_sol.ar) == SIGN(new_sol.br))
+	if (SIGN(new_sol.ar) == SIGN(new_sol.br) || new_sol.equ)
 		count = max(ABS(new_sol.ar), ABS(new_sol.br));
-	if (SIGN(sol->ar) == SIGN(sol->br))
+	if (SIGN(sol->ar) == SIGN(sol->br) || sol->equ)
 		counts = max(ABS(new_sol.ar), ABS(new_sol.br));
 	if ((ABS(new_sol.ar) + ABS(new_sol.br) - count) < (ABS(sol->ar) + ABS(sol->br) - counts))
 	{
 		sol->ar = new_sol.ar;
 		sol->br = new_sol.br;
+		sol->equ = new_sol.equ;
 	}
 }
 
-t_sol	find_best_candidate(t_all *all)
+t_sol	find_best_candidate(t_all *all, t_sol *sol)
 {
 	int		i;
 	t_ilst	*first;
-	t_sol	sol;
 	t_ilst	*r;
 	t_ilst	*rr;
 
@@ -66,17 +70,17 @@ t_sol	find_best_candidate(t_all *all)
 	first = all->b.ss;
 	r = all->b.ss->next;
 	rr = all->b.ss->prev;
-	sol.ar = find_pos_a(all, all->b.ss);
-	sol.br = 0;
+	find_pos_a(all, all->b.ss, sol);
+	sol->br = 0;
 	while (r != first)
 	{
 		i++;
-		get_best_sol(all, &sol, r, i);
-		get_best_sol(all, &sol, rr, -i);
+		get_best_sol(all, sol, r, i);
+		get_best_sol(all, sol, rr, -i);
 		r = r->next;
 		rr = rr->prev;
 	}
-	return (sol);
+	return (*sol);
 }
 
 void	apply_rrr(t_all *all, t_sol sol)
@@ -133,6 +137,13 @@ void	apply_rr(t_all *all, t_sol sol)
 
 void	apply_sort(t_all *all, t_sol sol)
 {
+	if (sol.equ)
+	{
+		if(SIGN(sol.br) != SIGN(sol.ar))
+		{
+			sol.ar = -sol.ar;
+		}
+	}
 	if (SIGN(sol.br) < 0)
 		apply_rrr(all, sol);
 	else
@@ -147,7 +158,7 @@ void	sort(t_all *all)
 
 	while (all->b.ss)
 	{
-		sol = find_best_candidate(all);
+		find_best_candidate(all, &sol);
 		apply_sort(all, sol);
 		// sleep(10);
 	}

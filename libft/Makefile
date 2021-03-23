@@ -7,6 +7,7 @@ SRCS	=	ft_atoi.c \
 			ft_dlst_manage.c \
 			ft_dlst_manage2.c \
 			ft_ilst_define.c \
+			ft_ilst_utils.c \
 			ft_intlen.c \
 			ft_isalpha.c \
 			ft_isalnum.c \

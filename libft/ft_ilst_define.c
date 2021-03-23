@@ -12,36 +12,6 @@
 
 #include "libft.h"
 
-t_ilst	*ft_ilst_new(int num)
-{
-	t_ilst *new;
-
-	if (!(new = ft_calloc(1, sizeof(t_ilst))))
-		return (0);
-	new->n = num;
-	new->prev = new;
-	new->next = new;
-	return (new);
-}
-
-t_ilst	*ft_ilst_last(t_ilst *lst)
-{
-	if (!lst)
-		return (0);
-	while (lst->next)
-		lst = lst->next;
-	return (lst);
-}
-
-t_ilst	*ft_ilst_first(t_ilst *lst)
-{
-	if (!lst)
-		return (0);
-	while (lst->prev)
-		lst = lst->prev;
-	return (lst);
-}
-
 void	ft_ilst_addfront(t_ilst **lst, t_ilst *new)
 {
 	t_ilst *temp;

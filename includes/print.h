@@ -1,5 +1,5 @@
-#ifndef PRINT_INPUT_H
-# define PRINT_INPUT_H
+#ifndef PRINT_H
+# define PRINT_H
 
 # include "struct_def.h"
 

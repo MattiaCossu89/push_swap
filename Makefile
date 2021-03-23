@@ -4,12 +4,15 @@ SRCSPS	=	push_swap.c \
 			op/rotate.c \
 			op/swap.c \
 			sort/compute_sorting.c \
-			sort/find_max_sub_rev.c \
+			sort/find_fun.c \
+			sort/littlesort.c \
 			sort/set_stacks.c \
 			sort/sort.c \
 			utils/exit.c \
 			utils/fill_input.c \
-			utils/print.c
+			utils/min_n_max.c \
+			utils/print.c \
+			utils/sort_utils.c
 
 SRCSCH	=	checker.c \
 			op/push.c \
@@ -76,8 +79,8 @@ fclean	: clean
 		rm -rf $(CH) $(PS)
 
 norme:
-	norminette -R CheckForbiddenSourceHeader $(SRCSPS) $(SRCSCH)
-	norminette -R CheckDefine $(INCSCH)/*.h $(INCSPS)/*.h
+	~/.norminette/norminette.rb -R CheckForbiddenSourceHeader $(SRCSPS) $(SRCSCH)
+	~/.norminette/norminette.rb -R CheckDefine $(INCSCH)/*.h
 
 re		: fclean all
 

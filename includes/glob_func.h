@@ -5,8 +5,7 @@
 # include <unistd.h>
 # include <stdio.h>
 # include "struct_def.h"
-# include "exit_all.h"
-# include "fill_input.h"
+# include "utils.h"
 # include "print.h"
 # include "../libft/libft.h"
 # include "op.h"

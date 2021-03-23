@@ -1,43 +1,5 @@
 #include "push_swap.h"
 
-t_ilst	**ft_realloc_arr(t_ilst **in, size_t n)
-{
-	t_ilst	**new;
-	int		i;
-
-	i = -1;
-	if (!(new = ft_calloc(n + 1, sizeof(t_ilst *))))
-		return (0);
-	while (in[++i])
-		new[i] = in[i];
-	return (new);
-}
-
-void	print_max_sub(t_all *all)
-{
-	t_lst	*it;
-	int		i;
-
-	i = 0;
-	while (i < all->m.len)
-	{
-		ft_putnbr_fd(all->m.active[i]->n, 1);
-		ft_putstr_fd(" ", 1);
-		i++;
-	}
-	ft_putstr_fd("\n", 1);
-}
-
-void	print_all(t_all *all)
-{
-	int i;
-
-	i = 0;
-	while (i < all->m.len)
-		printf("%d ", all->m.lens[i++]);
-		printf("\n");
-}
-
 char	find_case(t_ilst *it, t_all *all)
 {
 	t_lst	*lit;
@@ -148,52 +110,4 @@ void	find_max_sub(t_all *all)
 		set_lst_active(it, all);
 		it = it->next;
 	}
-}
-
-void	clear_lists(t_all *all)
-{
-	t_lst	*it;
-
-	it = all->m.subs;
-	while (it->next && (all->m.subs = it->next))
-	{
-		free(it->cont);
-		free(it);
-		it = all->m.subs;
-	}
-	all->m.active = all->m.subs->cont;
-	free(all->m.subs);
-	all->m.len = all->m.lens[all->m.len - 1];
-	free(all->m.lens);
-}
-
-void	remove_last(t_all *all)
-{
-	int		i;
-
-	i = -1;
-	while (++i < all->rm.len)
-	{
-		if (all->rm.active[i] == all->m.active[all->m.len - 1])
-		{
-			ft_memmove(&all->rm.active[i], &all->rm.active[i + 1],
-						(all->rm.len - i - 1) * sizeof(t_ilst *));
-			all->rm.len--;
-			all->rm.active[all->rm.len] = 0;
-			return ;
-		}
-	}
-}
-
-void	compute_sorting(t_all *all)
-{
-	find_max_sub(all);
-	clear_lists(all);
-	all->print = 1;
-	// print_max_sub(all);
-	set_stacks(all);
-	print_stack(all->a.ss);
-	sleep(5);
-	sort(all);
-	print_stack(all->a.ss);
 }

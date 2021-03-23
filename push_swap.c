@@ -13,5 +13,8 @@ int		main(int ac, char **av)
 	fill_stack_a(&all);
 	sort_input(&all);
 	compute_sorting(&all);
+	// printf("-----------\n");
+	// print_stack(all.a.ss);
+	// printf("-----------\n");
 	return (0);
 }

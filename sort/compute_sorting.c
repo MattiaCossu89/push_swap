@@ -28,6 +28,16 @@ void	print_max_sub(t_all *all)
 	ft_putstr_fd("\n", 1);
 }
 
+void	print_all(t_all *all)
+{
+	int i;
+
+	i = 0;
+	while (i < all->m.len)
+		printf("%d ", all->m.lens[i++]);
+		printf("\n");
+}
+
 char	find_case(t_ilst *it, t_all *all)
 {
 	t_lst	*lit;
@@ -182,5 +192,8 @@ void	compute_sorting(t_all *all)
 	all->print = 1;
 	// print_max_sub(all);
 	set_stacks(all);
+	print_stack(all->a.ss);
+	sleep(5);
 	sort(all);
+	print_stack(all->a.ss);
 }

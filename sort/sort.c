@@ -29,7 +29,7 @@ void	find_pos_a(t_all *all, t_ilst *tof, t_sol *sol)
 		sol->ar = cr;
 }
 
-int		max(int a, int b)
+int		min(int a, int b)
 {
 	if (a < b)
 		return (a);
@@ -48,9 +48,9 @@ void	get_best_sol(t_all *all, t_sol *sol, t_ilst *tof, int i)
 	count = 0;
 	counts = 0;
 	if (SIGN(new_sol.ar) == SIGN(new_sol.br) || new_sol.equ)
-		count = max(ABS(new_sol.ar), ABS(new_sol.br));
+		count = min(ABS(new_sol.ar), ABS(new_sol.br));
 	if (SIGN(sol->ar) == SIGN(sol->br) || sol->equ)
-		counts = max(ABS(new_sol.ar), ABS(new_sol.br));
+		counts = min(ABS(sol->ar), ABS(sol->br));
 	if ((ABS(new_sol.ar) + ABS(new_sol.br) - count) < (ABS(sol->ar) + ABS(sol->br) - counts))
 	{
 		sol->ar = new_sol.ar;
@@ -72,6 +72,7 @@ t_sol	find_best_candidate(t_all *all, t_sol *sol)
 	rr = all->b.ss->prev;
 	find_pos_a(all, all->b.ss, sol);
 	sol->br = 0;
+	sol->equ = 0;
 	while (r != first)
 	{
 		i++;
@@ -137,17 +138,27 @@ void	apply_rr(t_all *all, t_sol sol)
 
 void	apply_sort(t_all *all, t_sol sol)
 {
-	if (sol.equ)
-	{
-		if(SIGN(sol.br) != SIGN(sol.ar))
-		{
-			sol.ar = -sol.ar;
-		}
-	}
+	// if (sol.equ)
+	// {
+	// 	if(SIGN(sol.br) != SIGN(sol.ar))
+	// 	{
+	// 		sol.ar = -sol.ar;
+	// 	}
+	// }
+	// printf("----before------\n");
+	// print_stack(all->a.ss);
+	// printf("-----------\n");
+	// print_stack(all->b.ss);
+	// printf("-----------\n");
 	if (SIGN(sol.br) < 0)
 		apply_rrr(all, sol);
 	else
 		apply_rr(all, sol);
+	// printf("----after------\n");
+	// print_stack(all->a.ss);
+	// printf("-----------\n");
+	// print_stack(all->b.ss);
+	// printf("-----------\n");
 }
 
 void	sort(t_all *all)
@@ -155,12 +166,29 @@ void	sort(t_all *all)
 	t_sol	sol;
 	t_ilst	*f;
 	t_ilst	*b;
+	int		i;
 
+	i = 0;
+	sol.ar = all->len;
+	sol.br = all->len;
 	while (all->b.ss)
 	{
+		// if (!(all->a.ss->ri < all->a.ss->next->ri && all->a.ss->ri > all->a.ss->prev->ri))
+		// {
+		// 	printf("%d %d %d\n", all->a.ss->ri, sol.ar, sol.br);
+		// 	i++;
+		// 	sleep(100);
+		// }
 		find_best_candidate(all, &sol);
+		// printf("--%d %d %d [%d]\n", all->a.ss->prev->ri, all->a.ss->ri, all->a.ss->next->ri, all->b.ss->ri);
 		apply_sort(all, sol);
-		// sleep(10);
+
+		if (!(all->a.ss->ri < all->a.ss->next->ri && all->a.ss->ri > all->a.ss->prev->ri))
+		{
+			printf("%d %d %d\n", all->a.ss->ri, sol.ar, sol.br);
+			i++;
+			sleep(100);
+		}
 	}
 	f = all->a.ss;
 	b = all->a.ss;
@@ -175,6 +203,8 @@ void	sort(t_all *all)
 	else
 		while (all->a.ss->ri != 0)
 			rra(all);
+	if (i)
+		printf("%d\n", i++);
 	// print_stack(all->a.ss);
 	// printf("*************\n");
 	// print_stack(all->b.ss);

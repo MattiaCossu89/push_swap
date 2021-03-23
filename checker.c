@@ -6,7 +6,7 @@
 /*   By: mcossu <mcossu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 10:51:52 by mcossu            #+#    #+#             */
-/*   Updated: 2021/03/17 19:03:47 by mcossu           ###   ########.fr       */
+/*   Updated: 2021/03/22 18:11:06 by mcossu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	check_out(t_all *all)
 
 	if (all->b.ss)
 	{
-		ft_putstr_fd(RED"KO\n"NRM, 1);
+		ft_putstr_fd("KO\n", 1);
 		return ;
 	}
 	a = all->a.ss;
@@ -74,13 +74,13 @@ void	check_out(t_all *all)
 	{
 		if (a->n > a->next->n)
 		{
-			ft_putstr_fd(RED"KO\n"NRM, 1);
+			ft_putstr_fd("KO\n", 1);
 			printf("%d\n", a->n);
 			return ;
 		}
 		a = a->next;
 	}
-	ft_putstr_fd(GRN"OK\n"NRM, 1);
+	ft_putstr_fd("OK\n", 1);
 }
 
 int		main(int ac, char **av)
@@ -97,9 +97,9 @@ int		main(int ac, char **av)
 	// print_stack(all.a.ss);
 	get_in(&all);
 	check_out(&all);
-	print_stack(all.a.ss);
-	printf("------------\n");
-	print_stack(all.b.ss);
+	// print_stack(all.a.ss);
+	// printf("------------\n");
+	// print_stack(all.b.ss);
 	exit_all(&all);
 	return (0);
 }

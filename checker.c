@@ -82,7 +82,7 @@ int		main(int ac, char **av)
 	t_all	all;
 
 	if (ac == 1)
-		exit(1);
+		return (1);
 	ft_bzero(&all, sizeof(t_all));
 	insert_input(&all, ac, av);
 	fill_stack_a(&all);

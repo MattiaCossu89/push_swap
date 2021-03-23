@@ -35,7 +35,6 @@ void	push_fnl(t_all *all)
 {
 	int		cf;
 	int		cl;
-	int		c;
 
 	cf = find_pos_f(all);
 	cl = find_pos_l(all);

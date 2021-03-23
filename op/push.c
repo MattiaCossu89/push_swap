@@ -32,13 +32,8 @@ void	push(t_ilst **fromlst, t_ilst **tolst)
 
 void	pa(t_all *all)
 {
-	char	check;
-
-	check = 0;
 	if (!all->b.ss)
 		return ;
-	if (!all->a.ss)
-		check = 1;
 	push(&all->b.ss, &all->a.ss);
 	all->b.len--;
 	all->a.len++;
@@ -48,13 +43,8 @@ void	pa(t_all *all)
 
 void	pb(t_all *all)
 {
-	char	check;
-
-	check = 0;
 	if (!all->a.ss)
 		return ;
-	if (!all->b.ss)
-		check = 1;
 	push(&all->a.ss, &all->b.ss);
 	all->b.len++;
 	all->a.len--;

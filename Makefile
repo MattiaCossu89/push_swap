@@ -33,9 +33,11 @@ INCSPH	= .
 
 CC		= gcc
 
-FLAGS	= #-Wall -Wextra -Werror
+FLAGS	= -Wall -Wextra -Werror
 
 LIBFT	= ./libft/libft.a
+
+LIBPF	= ./ft_printf/libftprintf.a
 
 PS	= push_swap
 
@@ -60,22 +62,21 @@ $(PS)	: $(OBJSPS)
 
 $(CH)	: $(OBJSCH)
 		make -C ./libft
-		$(CC) $(OBJSCH) $(LIBFT) -I $(INCSCH) -o $(CH)
+		make -C ./ft_printf
+		$(CC) $(OBJSCH) $(LIBFT) $(LIBPF) -I $(INCSCH) -o $(CH)
 		@echo  "$(GREEN)checker is ready$(NC)"
 
 
 bonus	: re
 
-test	: re
-		@echo  "$(GREEN)Exec Minishell$(NC)"
-		./minishell
-
 clean	:
 		make clean -C ./libft
+		make clean -C ./ft_printf
 		rm -rf $(OBJSCH) $(OBJSPS)
 
 fclean	: clean
 		make fclean -C ./libft
+		make fclean -C ./ft_printf
 		rm -rf $(CH) $(PS)
 
 norme:

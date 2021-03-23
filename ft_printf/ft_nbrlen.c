@@ -1,42 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rotate.c                                           :+:      :+:    :+:   */
+/*   ft_nbrlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mcossu <mcossu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/17 16:08:15 by mcossu            #+#    #+#             */
-/*   Updated: 2021/03/17 18:59:15 by mcossu           ###   ########.fr       */
+/*   Created: 2021/01/18 16:21:36 by mcossu            #+#    #+#             */
+/*   Updated: 2021/01/18 16:21:37 by mcossu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "checker.h"
+#include "ft_printf.h"
 
-void	rotate(t_stack *stack)
+unsigned int	ft_nbrlen(size_t nbr, unsigned int b_len)
 {
-	if (!stack || stack->len == 1)
-		return ;
-	stack->ss = stack->ss->next;
-}
+	unsigned int len;
 
-void	ra(t_all *all)
-{
-	rotate(&all->a);
-	if (all->print)
-		ft_putstr_fd("ra\n", 1);
-}
-
-void	rb(t_all *all)
-{
-	rotate(&all->b);
-	if (all->print)
-		ft_putstr_fd("rb\n", 1);
-}
-
-void	rr(t_all *all)
-{
-	rotate(&all->a);
-	rotate(&all->b);
-	if (all->print)
-		ft_putstr_fd("rr\n", 1);
+	len = 1;
+	while (nbr /= b_len)
+		len++;
+	return (len);
 }

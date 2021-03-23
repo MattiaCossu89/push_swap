@@ -1,42 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rotate.c                                           :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mcossu <mcossu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/17 16:08:15 by mcossu            #+#    #+#             */
-/*   Updated: 2021/03/17 18:59:15 by mcossu           ###   ########.fr       */
+/*   Created: 2021/01/12 14:23:03 by mcossu            #+#    #+#             */
+/*   Updated: 2021/01/16 18:53:18 by mcossu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "checker.h"
+#include "libft.h"
 
-void	rotate(t_stack *stack)
+int	ft_putstr_fd(char *s, int fd)
 {
-	if (!stack || stack->len == 1)
-		return ;
-	stack->ss = stack->ss->next;
-}
+	int len;
 
-void	ra(t_all *all)
-{
-	rotate(&all->a);
-	if (all->print)
-		ft_putstr_fd("ra\n", 1);
-}
-
-void	rb(t_all *all)
-{
-	rotate(&all->b);
-	if (all->print)
-		ft_putstr_fd("rb\n", 1);
-}
-
-void	rr(t_all *all)
-{
-	rotate(&all->a);
-	rotate(&all->b);
-	if (all->print)
-		ft_putstr_fd("rr\n", 1);
+	if (!s)
+		return (0);
+	len = (int)ft_strlen(s);
+	write(fd, s, len);
+	return (len);
 }

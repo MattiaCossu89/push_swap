@@ -22,8 +22,6 @@ void	compute_sorting(t_all *all)
 int		main(int ac, char **av)
 {
 	t_all	all;
-	t_ilst	*it;
-	int		i;
 
 	if (ac == 1)
 		exit(1);
@@ -32,5 +30,6 @@ int		main(int ac, char **av)
 	fill_stack_a(&all);
 	sort_input(&all);
 	compute_sorting(&all);
+	exit_all(&all);
 	return (0);
 }

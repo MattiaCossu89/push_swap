@@ -14,8 +14,6 @@
 
 void	rev_rotate(t_stack *stack)
 {
-	t_ilst *temp;
-
 	if (!stack || stack->len == 1)
 		return ;
 	stack->ss = stack->ss->prev;

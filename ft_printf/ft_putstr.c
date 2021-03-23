@@ -1,42 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rotate.c                                           :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mcossu <mcossu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/17 16:08:15 by mcossu            #+#    #+#             */
-/*   Updated: 2021/03/17 18:59:15 by mcossu           ###   ########.fr       */
+/*   Created: 2021/01/18 16:23:13 by mcossu            #+#    #+#             */
+/*   Updated: 2021/01/18 16:23:40 by mcossu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "checker.h"
+#include "ft_printf.h"
 
-void	rotate(t_stack *stack)
-{
-	if (!stack || stack->len == 1)
-		return ;
-	stack->ss = stack->ss->next;
-}
+t_par	*g_cur;
 
-void	ra(t_all *all)
+int	ft_putstr(const char *str, size_t len)
 {
-	rotate(&all->a);
-	if (all->print)
-		ft_putstr_fd("ra\n", 1);
-}
+	int			res;
+	const char	*p_str;
 
-void	rb(t_all *all)
-{
-	rotate(&all->b);
-	if (all->print)
-		ft_putstr_fd("rb\n", 1);
-}
-
-void	rr(t_all *all)
-{
-	rotate(&all->a);
-	rotate(&all->b);
-	if (all->print)
-		ft_putstr_fd("rr\n", 1);
+	p_str = str;
+	if (!str && len >= 6)
+		p_str = "(null)";
+	else if (!str)
+		len = 0;
+	res = (int)len;
+	while ((res)-- > 0)
+		ft_putchar_fd(*(p_str++), 1);
+	return (len);
 }

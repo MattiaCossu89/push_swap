@@ -17,4 +17,5 @@ void	little_sort(t_all *all);
 void	find_max_sub(t_all *all);
 void	get_best_sol(t_all *all, t_sol *sol, t_ilst *tof, int i);
 void	restore_stack(t_all *all);
+void	push_back_minnmax(t_all *all);
 #endif

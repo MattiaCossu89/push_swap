@@ -13,6 +13,7 @@ void	compute_sorting(t_all *all)
 	if (all->len > 5)
 	{
 		set_stacks(all);
+		push_back_minnmax(all);
 		sort(all);
 	}
 	else

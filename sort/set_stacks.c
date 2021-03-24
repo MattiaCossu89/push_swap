@@ -84,10 +84,10 @@ void	set_stacks(t_all *all)
 			else if (all->b.len > 1 && all->a.ss->ri != all->m.active[0]->ri)
 				rb(all);
 		}
-		else if ((i >= all->m.len && (all->a.ss == all->m.active[0])))
+		else if (((i >= all->m.len || all->m.len == 1) &&
+		(all->a.ss == all->m.active[0])))
 			break ;
 		else
 			pb(all);
 	}
-	push_back_minnmax(all);
 }

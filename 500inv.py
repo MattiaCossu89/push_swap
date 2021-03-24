@@ -7,11 +7,9 @@ seed(datetime.now())
 # seed random number generator
 # prepare a sequence
 sequence = [i for i in range(501)]
-sequence rever
-val = input("How much numbers do you want: ")
+sequence = sequence[::-1]
 # select a subset without replacement
-subset = sample(sequence, int(val))
 res = ""
-for i in subset:
+for i in sequence:
 	res += str(i) + " "
 print(res)

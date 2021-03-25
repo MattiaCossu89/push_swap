@@ -6,29 +6,39 @@
 /*   By: mcossu <mcossu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 15:48:25 by mcossu            #+#    #+#             */
-/*   Updated: 2021/03/25 17:02:16 by mcossu           ###   ########.fr       */
+/*   Updated: 2021/03/25 17:43:10 by mcossu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
 
-void	swap(t_ilst *stack)
+void	swap(t_ilst **stack)
 {
-	int		temp;
+	t_ilst	*t1;
+	t_ilst	*t2;
 
-	if (!stack || !stack->next)
+	if (!stack || !*stack || (*stack)->next == *stack)
 		return ;
-	temp = stack->n;
-	stack->n = stack->next->n;
-	stack->next->n = temp;
-	temp = stack->ri;
-	stack->ri = stack->next->ri;
-	stack->next->ri = temp;
+	t1 = *stack;
+	t2 = (*stack)->next;
+	t2->prev = t1->prev;
+	t1->next = t2->next;
+	t2->next = t1;
+	t2->prev->next = t2;
+	t1->prev = t2;
+	t1->next->prev = t1;
+	*stack = t2;
+	// temp = stack->n;
+	// stack->n = stack->next->n;
+	// stack->next->n = temp;
+	// temp = stack->ri;
+	// stack->ri = stack->next->ri;
+	// stack->next->ri = temp;
 }
 
 void	sa(t_all *all)
 {
-	swap(all->a.ss);
+	swap(&all->a.ss);
 	if (all->print)
 	{
 		if (all->file)
@@ -42,7 +52,7 @@ void	sa(t_all *all)
 
 void	sb(t_all *all)
 {
-	swap(all->b.ss);
+	swap(&all->b.ss);
 	if (all->print)
 	{
 		if (all->file)

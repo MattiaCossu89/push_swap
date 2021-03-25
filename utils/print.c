@@ -1,4 +1,4 @@
-#include "struct_def.h"
+#include "checker.h"
 
 void	print_input(t_all *all)
 {
@@ -61,6 +61,64 @@ void	print_head(t_all *all)
 	print_line(all);
 }
 
+void	mnm_a(t_all *all, t_ilst **min, t_ilst **max)
+{
+	t_ilst *it;
+	t_ilst *f;
+
+	f = all->a.ss;
+	it = all->a.ss->next;
+	*min = f;
+	*max = f;
+	while (it != f)
+	{
+		if (it->ri < (*min)->ri)
+			*min = it;
+		if (it->ri > (*max)->ri)
+			*max = it;
+		it = it->next;
+	}
+}
+
+int		pos_a(t_all *all, t_ilst *tof)
+{
+	t_ilst	*f;
+	t_ilst	*it;
+	int		i;
+
+	i = -1;
+	f = all->a.ss;
+	it =
+}
+
+void	print_sorted(t_all *all, int i)
+{
+	const char	*color;
+	t_ilst		*min;
+	t_ilst		*max;
+
+	color = "";
+	mnm_a(all, &min, &max);
+	if (all->fc)
+	{
+		if ((all->insort[i]->ri > all->insort[i]->prev->ri ||
+			(all->insort[i]->prev->ri == max->ri && all->insort[i] == min)) &&
+			(all->insort[i]->ri < all->insort[i]->next->ri ||
+			(all->insort[i]->next->ri == min->ri && all->insort[i] == max)))
+			color = YEL;
+		else
+			color = RED;
+		if (all->insort[i]->ri == pos_a(all, all->insort[i]))
+			color = GRN;
+		ft_printf(" %s%*d%s |\n", color,
+			all->maxnl, all->insort[i]->n, "\033[0m");
+
+	}
+	else
+		ft_printf(" %*d |\n",
+			all->maxnl, all->insort[i]->n);
+}
+
 void	print_body(t_all *all)
 {
 	int		i;
@@ -84,8 +142,7 @@ void	print_body(t_all *all)
 		else
 			ft_printf(" %*s |",
 			all->maxnl, "");
-		ft_printf(" %*d |\n",
-		all->maxnl, all->insort[i]->n);
+		print_sorted(all, i);
 		a = a ? a->next : 0;
 		b = b ? b->next : 0;
 		i++;

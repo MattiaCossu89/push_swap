@@ -6,7 +6,7 @@
 /*   By: mcossu <mcossu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 11:04:19 by mcossu            #+#    #+#             */
-/*   Updated: 2021/03/17 16:35:12 by mcossu           ###   ########.fr       */
+/*   Updated: 2021/03/25 14:30:45 by mcossu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,10 @@ typedef struct	s_all
 	t_maxs	rm;
 	int		len;
 	char	print;
+	char	fc;
+	char	ff;
+	char	fs;
+	char	fv;
 }				t_all;
 
 # define ABS(x) (x < 0 ? -x : x)

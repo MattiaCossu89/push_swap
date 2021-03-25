@@ -1,22 +1,105 @@
 #include "glob_func.h"
 
-void	insert_input(t_all *all, int ac, char **av)
+void	fill_flags(t_all *all, char *flags)
 {
-	int	i;
-
-	i = 1;
-	if (!(all->in = ft_calloc(ac, sizeof(int))))
+	if (*flags != '-')
 		exit_error(all);
-	while (i < ac)
+	flags++;
+	while (ft_is_in_charset(*flags, "cfsv"))
 	{
-		if (!ft_isnumber(av[i]))
+		if (*flags == 'c' && !all->fc)
+			all->fc = 'c';
+		else if (*flags == 'f' && !all->ff)
+			all->ff = 'f';
+		else if (*flags == 'v' && !all->fv)
+			all->fv = 'v';
+		else if (*flags == 's' && !all->fs)
+			all->fs = 's';
+		else
 			exit_error(all);
-		all->in[i - 1] = ft_atoi(av[i]);
-		if (ft_strlen(av[i]) != (size_t)ft_intlen(all->in[i - 1]))
-			exit_error(all);
+		flags++;
+	}
+	if (*flags)
+		exit_error(all);
+}
+
+char	***parse_input(t_all *all, int ac, char **av)
+{
+	char	***avv;
+	int		i;
+	int		j;
+	char	**a;
+
+	i = 0;
+	j = -1;
+	a = ft_split(av[1], ' ');
+	if (!ft_isnumber(a[0]))
+	{
+		fill_flags(all, a[0]);
 		i++;
 	}
-	all->len = ac - 1;
+	while (a[++j])
+		free(a[j]);
+	free(a);
+	if (!(avv = ft_calloc(ac, sizeof(char **))))
+		exit_error(all);
+	j = -1;
+	while (++i < ac)
+	{
+		if (!(avv[++j] = ft_split(av[i], ' ')))
+		{
+			free_avv(avv);
+			exit_error(all);
+		}
+	}
+	return (avv);
+}
+
+int		calc_len(char ***av)
+{
+	int	i;
+	int	j;
+	int	len;
+
+	i = 0;
+	j = 0;
+	len = 0;
+	while (av[i])
+	{
+		j = 0;
+		while (av[i][j])
+			j++;
+		len += j;
+		i++;
+	}
+	return (len);
+}
+
+void	insert_input(t_all *all, char ***av)
+{
+	int	i;
+	int	j;
+	int	k;
+	int	len;
+
+	i = -1;
+	k = -1;
+	len = calc_len(av);
+	if (!(all->in = ft_calloc(len + 1, sizeof(int))))
+		exit_error(all);
+	while (av[++i])
+	{
+		j = -1;
+		while (av[i][++j])
+		{
+			if (!ft_isnumber(av[i][j]))
+				exit_error(all);
+			all->in[++k] = ft_atoi(av[i][j]);
+			if (ft_strlen(av[i][j]) != (size_t)ft_intlen(all->in[k]))
+				exit_error(all);
+		}
+	}
+	all->len = k + 1;
 }
 
 void	init_input(t_all *all)

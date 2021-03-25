@@ -6,7 +6,7 @@
 /*   By: mcossu <mcossu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 10:51:52 by mcossu            #+#    #+#             */
-/*   Updated: 2021/03/22 18:11:06 by mcossu           ###   ########.fr       */
+/*   Updated: 2021/03/25 14:28:48 by mcossu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ int		main(int ac, char **av)
 	if (ac == 1)
 		return (1);
 	ft_bzero(&all, sizeof(t_all));
-	insert_input(&all, ac, av);
+	insert_input(&all, parse_input(&all, ac, av));
 	fill_stack_a(&all);
 	get_in(&all);
 	check_out(&all);

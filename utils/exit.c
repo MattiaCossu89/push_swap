@@ -14,3 +14,23 @@ void	exit_error(t_all *all)
 	ft_putstr_fd("Error\n", 2);
 	exit_all(all);
 }
+
+void	free_avv(char  ***avv)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (avv[i])
+	{
+		while (avv[i][j])
+		{
+			free(avv[i][j]);
+			j++;
+		}
+		free(avv[i]);
+		i++;
+	}
+	free(avv);
+}

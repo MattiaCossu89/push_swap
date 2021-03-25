@@ -27,6 +27,7 @@ int		main(int ac, char **av)
 	if (ac == 1)
 		exit(1);
 	ft_bzero(&all, sizeof(t_all));
+	all.p = 1;
 	insert_input(&all, parse_input(&all, ac, av));
 	fill_stack_a(&all);
 	sort_input(&all);

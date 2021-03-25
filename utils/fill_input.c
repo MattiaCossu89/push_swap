@@ -1,26 +1,40 @@
 #include "glob_func.h"
 
-void	fill_flags(t_all *all, char *flags)
+void	free_arr(char **arr)
 {
+	int j;
+
+	j = -1;
+	while (arr[++j])
+		free(arr[j]);
+	free(arr);
+}
+
+int		fill_flags(t_all *all, char *flags, int *i)
+{
+	if (ft_isnumber(flags))
+		return (1);
 	if (*flags != '-')
-		exit_error(all);
+		return (0);
 	flags++;
 	while (ft_is_in_charset(*flags, "cfsv"))
 	{
-		if (*flags == 'c' && !all->fc)
+		if (*flags == 'c' && !all->fc && !all->p)
 			all->fc = 'c';
 		else if (*flags == 'f' && !all->ff)
 			all->ff = 'f';
-		else if (*flags == 'v' && !all->fv)
+		else if (*flags == 'v' && !all->fv && !all->p)
 			all->fv = 'v';
-		else if (*flags == 's' && !all->fs)
+		else if (*flags == 's' && !all->fs && !all->p)
 			all->fs = 's';
 		else
-			exit_error(all);
+			return (0);
 		flags++;
 	}
 	if (*flags)
-		exit_error(all);
+		return (0);
+	(*i)++;
+	return (1);
 }
 
 char	***parse_input(t_all *all, int ac, char **av)
@@ -33,17 +47,14 @@ char	***parse_input(t_all *all, int ac, char **av)
 	i = 0;
 	j = -1;
 	a = ft_split(av[1], ' ');
-	if (!ft_isnumber(a[0]))
+	if (!(fill_flags(all, a[0], &i)))
 	{
-		fill_flags(all, a[0]);
-		i++;
+		free_arr(a);
+		exit_error(all);
 	}
-	while (a[++j])
-		free(a[j]);
-	free(a);
+	free_arr(a);
 	if (!(avv = ft_calloc(ac, sizeof(char **))))
 		exit_error(all);
-	j = -1;
 	while (++i < ac)
 	{
 		if (!(avv[++j] = ft_split(av[i], ' ')))

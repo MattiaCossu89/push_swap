@@ -21,11 +21,12 @@ void	free_avv(char  ***avv)
 	int	j;
 
 	i = 0;
-	j = 0;
 	while (avv[i])
 	{
+		j = 0;
 		while (avv[i][j])
 		{
+			printf("%s\n", avv[i][j]);
 			free(avv[i][j]);
 			j++;
 		}
@@ -33,4 +34,10 @@ void	free_avv(char  ***avv)
 		i++;
 	}
 	free(avv);
+}
+
+void	exit_error_avv(t_all *all, char ***av)
+{
+	free_avv(av);
+	exit_error(all);
 }

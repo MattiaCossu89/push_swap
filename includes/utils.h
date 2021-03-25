@@ -12,6 +12,7 @@ void	print_stack(t_ilst *lst);
 void	fill_stack_a(t_all *all);
 void	exit_all(t_all *all);
 void	exit_error(t_all *all);
+void	exit_error_avv(t_all *all, char ***av);
 void	free_avv(char  ***avv);
 int		min(int a, int b);
 t_ilst	**ft_realloc_arr(t_ilst **in, size_t n);

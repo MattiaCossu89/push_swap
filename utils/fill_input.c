@@ -84,8 +84,7 @@ void	insert_input(t_all *all, char ***av)
 
 	i = -1;
 	k = -1;
-	len = calc_len(av);
-	if (!(all->in = ft_calloc(len + 1, sizeof(int))))
+	if (!(all->in = ft_calloc(calc_len(av) + 1, sizeof(int))))
 		exit_error(all);
 	while (av[++i])
 	{
@@ -93,12 +92,15 @@ void	insert_input(t_all *all, char ***av)
 		while (av[i][++j])
 		{
 			if (!ft_isnumber(av[i][j]))
-				exit_error(all);
+				exit_error_avv(all, av);
 			all->in[++k] = ft_atoi(av[i][j]);
-			if (ft_strlen(av[i][j]) != (size_t)ft_intlen(all->in[k]))
-				exit_error(all);
+			if ((len = (int)ft_strlen(av[i][j])) != ft_intlen(all->in[k]))
+				exit_error_avv(all, av);
+			if (len > all->maxnl)
+				all->maxnl = len;
 		}
 	}
+	free_avv(av);
 	all->len = k + 1;
 }
 

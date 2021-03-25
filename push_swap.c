@@ -20,6 +20,12 @@ void	compute_sorting(t_all *all)
 		little_sort(all);
 }
 
+void	init_file(t_all *all)
+{
+	if (!(all->file = open("res", O_WRONLY | O_CREAT | O_TRUNC, 0777)))
+		exit_all(all);
+}
+
 int		main(int ac, char **av)
 {
 	t_all	all;
@@ -31,6 +37,8 @@ int		main(int ac, char **av)
 	insert_input(&all, parse_input(&all, ac, av));
 	fill_stack_a(&all);
 	sort_input(&all);
+	if (all.ff)
+		init_file(&all);
 	compute_sorting(&all);
 	exit_all(&all);
 	return (0);

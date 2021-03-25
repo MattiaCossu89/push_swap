@@ -6,7 +6,7 @@
 /*   By: mcossu <mcossu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 11:04:19 by mcossu            #+#    #+#             */
-/*   Updated: 2021/03/25 15:18:34 by mcossu           ###   ########.fr       */
+/*   Updated: 2021/03/25 15:37:15 by mcossu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ typedef struct	s_all
 	t_maxs	m;
 	t_maxs	rm;
 	int		len;
+	int		file;
 	int		maxnl;
 	char	print;
 	char	fc;

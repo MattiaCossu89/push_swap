@@ -4,6 +4,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdio.h>
+# include <fcntl.h>
 # include "struct_def.h"
 # include "utils.h"
 # include "print.h"

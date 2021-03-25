@@ -6,7 +6,7 @@
 /*   By: mcossu <mcossu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 10:51:52 by mcossu            #+#    #+#             */
-/*   Updated: 2021/03/25 14:28:48 by mcossu           ###   ########.fr       */
+/*   Updated: 2021/03/25 15:49:51 by mcossu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	get_in(t_all *all)
 	int		res;
 
 	line = 0;
-	while ((res = get_next_line(0, &line)) > 0)
+	while ((res = get_next_line(all->file, &line)) > 0)
 	{
 		compute_command(all, line);
 		free(line);
@@ -77,6 +77,12 @@ void	check_out(t_all *all)
 	ft_putstr_fd("OK\n", 1);
 }
 
+void	init_file(t_all *all)
+{
+	if (!(all->file = open("res", O_RDONLY, 0777)))
+		exit_error(all);
+}
+
 int		main(int ac, char **av)
 {
 	t_all	all;
@@ -86,6 +92,8 @@ int		main(int ac, char **av)
 	ft_bzero(&all, sizeof(t_all));
 	insert_input(&all, parse_input(&all, ac, av));
 	fill_stack_a(&all);
+	if (all.ff)
+		init_file(&all);
 	get_in(&all);
 	check_out(&all);
 	exit_all(&all);

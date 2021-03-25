@@ -6,7 +6,7 @@
 /*   By: mcossu <mcossu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 15:54:22 by mcossu            #+#    #+#             */
-/*   Updated: 2021/03/17 19:02:14 by mcossu           ###   ########.fr       */
+/*   Updated: 2021/03/25 15:51:52 by mcossu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,12 @@ void	pa(t_all *all)
 	all->b.len--;
 	all->a.len++;
 	if (all->print)
-		ft_putstr_fd("pa\n", 1);
+	{
+		if (all->file)
+			ft_putstr_fd("pa\n", all->file);
+		else
+			ft_putstr_fd("pa\n", 1);
+	}
 }
 
 void	pb(t_all *all)
@@ -49,5 +54,10 @@ void	pb(t_all *all)
 	all->b.len++;
 	all->a.len--;
 	if (all->print)
-		ft_putstr_fd("pb\n", 1);
+	{
+		if (all->file)
+			ft_putstr_fd("pb\n", all->file);
+		else
+			ft_putstr_fd("pb\n", 1);
+	}
 }

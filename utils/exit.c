@@ -6,6 +6,8 @@ void	exit_all(t_all *all)
 	free(all->insort);
 	ft_ilst_clear(&all->a.ss);
 	ft_ilst_clear(&all->b.ss);
+	if (all->file)
+		close(all->file);
 	exit(1);
 }
 
@@ -26,7 +28,6 @@ void	free_avv(char  ***avv)
 		j = 0;
 		while (avv[i][j])
 		{
-			printf("%s\n", avv[i][j]);
 			free(avv[i][j]);
 			j++;
 		}

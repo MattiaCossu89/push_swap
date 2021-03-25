@@ -6,7 +6,7 @@
 /*   By: mcossu <mcossu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 15:48:25 by mcossu            #+#    #+#             */
-/*   Updated: 2021/03/25 15:52:51 by mcossu           ###   ########.fr       */
+/*   Updated: 2021/03/25 17:02:16 by mcossu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ void	sa(t_all *all)
 		else
 			ft_putstr_fd("sa\n", 1);
 	}
+	all->op.tot++;
+	all->op.sa++;
 }
 
 void	sb(t_all *all)
@@ -48,6 +50,8 @@ void	sb(t_all *all)
 		else
 			ft_putstr_fd("sb\n", 1);
 	}
+	all->op.tot++;
+	all->op.sb++;
 }
 
 void	ss(t_all *all)
@@ -61,4 +65,6 @@ void	ss(t_all *all)
 		else
 			ft_putstr_fd("ss\n", 1);
 	}
+	all->op.tot++;
+	all->op.ss++;
 }

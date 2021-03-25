@@ -6,7 +6,7 @@
 /*   By: mcossu <mcossu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 11:04:19 by mcossu            #+#    #+#             */
-/*   Updated: 2021/03/25 15:37:15 by mcossu           ###   ########.fr       */
+/*   Updated: 2021/03/25 17:00:43 by mcossu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define STRUCT_DEF_H
 
 # include "../libft/libft.h"
+# include "../ft_printf/ft_printf.h"
 
 typedef struct	s_stack
 {
@@ -40,6 +41,23 @@ typedef struct	s_sol
 	char	equ;
 }				t_sol;
 
+typedef struct	s_ops
+{
+	int		pa;
+	int		pb;
+	int		sa;
+	int		sb;
+	int		ss;
+	int		ra;
+	int		rb;
+	int		rr;
+	int		rra;
+	int		rrb;
+	int		rrr;
+	int		tot;
+}				t_ops;
+
+
 typedef struct	s_all
 {
 	int		*in;
@@ -57,6 +75,7 @@ typedef struct	s_all
 	char	fs;
 	char	fv;
 	char	p;
+	t_ops	op;
 }				t_all;
 
 # define ABS(x) (x < 0 ? -x : x)

@@ -3,6 +3,7 @@
 		"libft.h": "c",
 		"get_next_line.h": "c",
 		"push_swap.h": "c",
-		"glob_func.h": "c"
+		"glob_func.h": "c",
+		"struct_def.h": "c"
 	}
 }

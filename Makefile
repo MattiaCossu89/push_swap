@@ -1,5 +1,6 @@
 SRCSPS	=	push_swap.c \
 			op/push.c \
+			op/read.c \
 			op/rev_rotate.c \
 			op/rotate.c \
 			op/swap.c \
@@ -15,6 +16,7 @@ SRCSPS	=	push_swap.c \
 
 SRCSCH	=	checker.c \
 			op/push.c \
+			op/read.c \
 			op/rev_rotate.c \
 			op/rotate.c \
 			op/swap.c \

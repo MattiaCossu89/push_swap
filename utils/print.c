@@ -55,9 +55,9 @@ void	print_head(t_all *all)
 {
 	print_line(all);
 	ft_printf("\t| %*s%*s | %*s%*s | %*s%*s |\n",
-	all->maxnl / 2 + 1, "a", all->maxnl / 2, " ",
-	all->maxnl / 2 + 1, "b", all->maxnl / 2, " ",
-	all->maxnl / 2 + 1, "r", all->maxnl / 2, " ");
+	all->maxnl / 2 + 1, "a", all->maxnl / 2, "",
+	all->maxnl / 2 + 1, "b", all->maxnl / 2, "",
+	all->maxnl / 2 + 1, "r", all->maxnl / 2, "");
 	print_line(all);
 }
 
@@ -86,9 +86,19 @@ int		pos_a(t_all *all, t_ilst *tof)
 	t_ilst	*it;
 	int		i;
 
-	i = -1;
-	f = all->a.ss;
-	it =
+	i = 0;
+	f = all->a.ss->prev;
+	it = all->a.ss;
+	while (it != f)
+	{
+		if (it == tof)
+			return (i);
+		i++;
+		it = it->next;
+	}
+	if (it != tof)
+		return (-1);
+	return (i);
 }
 
 void	print_sorted(t_all *all, int i)

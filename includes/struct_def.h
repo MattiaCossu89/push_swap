@@ -6,7 +6,7 @@
 /*   By: mcossu <mcossu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 11:04:19 by mcossu            #+#    #+#             */
-/*   Updated: 2021/03/25 17:00:43 by mcossu           ###   ########.fr       */
+/*   Updated: 2021/03/26 15:18:13 by mcossu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ typedef struct	s_all
 	char	ff;
 	char	fs;
 	char	fv;
+	char	fd;
 	char	p;
 	t_ops	op;
 }				t_all;

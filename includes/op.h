@@ -6,7 +6,7 @@
 /*   By: mcossu <mcossu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 17:57:14 by mcossu            #+#    #+#             */
-/*   Updated: 2021/03/17 17:59:15 by mcossu           ###   ########.fr       */
+/*   Updated: 2021/03/26 16:36:39 by mcossu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,5 @@ void	rr(t_all *all);
 void	rra(t_all *all);
 void	rrb(t_all *all);
 void	rrr(t_all *all);
+void	avait_n(t_all *all);
 #endif

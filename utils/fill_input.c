@@ -17,7 +17,7 @@ int		fill_flags(t_all *all, char *flags, int *i)
 	if (*flags != '-')
 		return (0);
 	flags++;
-	while (ft_is_in_charset(*flags, "cfsv"))
+	while (ft_is_in_charset(*flags, "cfsvd"))
 	{
 		if (*flags == 'c' && !all->fc && !all->p)
 			all->fc = 'c';
@@ -27,6 +27,8 @@ int		fill_flags(t_all *all, char *flags, int *i)
 			all->fv = 'v';
 		else if (*flags == 's' && !all->fs && !all->p)
 			all->fs = 's';
+		else if (*flags == 'd' && !all->fd && all->p)
+			all->fd = 'd';
 		else
 			return (0);
 		flags++;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcossu <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: mcossu <mcossu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 09:15:56 by mcossu            #+#    #+#             */
-/*   Updated: 2021/01/13 09:15:58 by mcossu           ###   ########.fr       */
+/*   Updated: 2021/03/26 16:23:32 by mcossu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <stdlib.h>
 # include "libft.h"
 # include <stdio.h>
-# define BUFFER_SIZE 1
+# define BUFFER_SIZE 50000
 
 typedef struct	s_blst
 {

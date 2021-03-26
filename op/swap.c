@@ -6,7 +6,7 @@
 /*   By: mcossu <mcossu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 15:48:25 by mcossu            #+#    #+#             */
-/*   Updated: 2021/03/25 17:43:10 by mcossu           ###   ########.fr       */
+/*   Updated: 2021/03/26 16:42:38 by mcossu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,22 @@ void	swap(t_ilst **stack)
 		return ;
 	t1 = *stack;
 	t2 = (*stack)->next;
-	t2->prev = t1->prev;
-	t1->next = t2->next;
-	t2->next = t1;
-	t2->prev->next = t2;
-	t1->prev = t2;
-	t1->next->prev = t1;
+	if (t1 == t2->next)
+	{
+		t2->prev = t1;
+		t2->next = t1;
+		t1->next = t2;
+		t1->prev = t2;
+	}
+	else
+	{
+		t2->prev = t1->prev;
+		t1->next = t2->next;
+		t2->next = t1;
+		t2->prev->next = t2;
+		t1->prev = t2;
+		t1->next->prev = t1;
+	}
 	*stack = t2;
 	// temp = stack->n;
 	// stack->n = stack->next->n;
@@ -46,6 +56,7 @@ void	sa(t_all *all)
 		else
 			ft_putstr_fd("sa\n", 1);
 	}
+	avait_n(all);
 	all->op.tot++;
 	all->op.sa++;
 }
@@ -75,6 +86,7 @@ void	ss(t_all *all)
 		else
 			ft_putstr_fd("ss\n", 1);
 	}
+	avait_n(all);
 	all->op.tot++;
 	all->op.ss++;
 }

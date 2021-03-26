@@ -1,18 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checker.h                                          :+:      :+:    :+:   */
+/*   read.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mcossu <mcossu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/16 10:50:21 by mcossu            #+#    #+#             */
-/*   Updated: 2021/03/26 16:01:47 by mcossu           ###   ########.fr       */
+/*   Created: 2021/03/26 16:34:48 by mcossu            #+#    #+#             */
+/*   Updated: 2021/03/26 16:43:47 by mcossu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CHECKER_H
-# define CHECKER_H
+#include "checker.h"
 
-# include "glob_func.h"
-# include <string.h>
-#endif
+void	avait_n(t_all *all)
+{
+	char c;
+
+	c = 0;
+	if (all->fd)
+		while (c != '\n')
+			read(0, &c, 1);
+}

@@ -6,7 +6,7 @@
 /*   By: mcossu <mcossu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 10:51:52 by mcossu            #+#    #+#             */
-/*   Updated: 2021/03/26 17:28:01 by mcossu           ###   ########.fr       */
+/*   Updated: 2021/03/26 18:57:17 by mcossu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,10 @@ void	get_in(t_all *all)
 		c = 0;
 		compute_command(all, line);
 		if (all->fv)
+		{
+			printf("%s\n", line);
 			print_stacks(all);
-		printf("%s\n", line);
+		}
 		free(line);
 		line = 0;
 	}
@@ -66,7 +68,7 @@ void	check_out(t_all *all)
 
 	if (all->b.ss)
 	{
-		ft_putstr_fd("KO\n", 1);
+		ft_putstr_fd(RED"KO\n"NRM, 1);
 		return ;
 	}
 	a = all->a.ss;
@@ -74,12 +76,12 @@ void	check_out(t_all *all)
 	{
 		if (a->n > a->next->n)
 		{
-			ft_putstr_fd("KO\n", 1);
+			ft_putstr_fd(RED"KO\n"NRM, 1);
 			return ;
 		}
 		a = a->next;
 	}
-	ft_putstr_fd("OK\n", 1);
+	ft_putstr_fd(GRN"OK\n"NRM, 1);
 }
 
 void	init_file(t_all *all)
@@ -100,7 +102,8 @@ int		main(int ac, char **av)
 	sort_input(&all);
 	if (all.maxnl % 2 == 0)
 		all.maxnl += 1;
-	print_stacks(&all);
+	if (all.fv)
+		print_stacks(&all);
 	if (all.ff)
 		init_file(&all);
 	get_in(&all);

@@ -6,11 +6,25 @@
 /*   By: mcossu <mcossu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 17:25:33 by mcossu            #+#    #+#             */
-/*   Updated: 2021/03/26 17:25:33 by mcossu           ###   ########.fr       */
+/*   Updated: 2021/03/26 18:57:46 by mcossu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	print_lis(t_all *all)
+{
+	int i;
+
+	i = 0;
+	while (i < all->m.len)
+	{
+		printf("%d ", all->m.active[i]->n);
+		i++;
+	}
+	printf("\n");
+	sleep(100);
+}
 
 void	compute_sorting(t_all *all)
 {

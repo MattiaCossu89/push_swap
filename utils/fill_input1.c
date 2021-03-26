@@ -6,7 +6,7 @@
 /*   By: mcossu <mcossu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 17:30:20 by mcossu            #+#    #+#             */
-/*   Updated: 2021/03/26 17:30:47 by mcossu           ###   ########.fr       */
+/*   Updated: 2021/03/26 18:33:49 by mcossu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,25 @@ void	free_arr(char **arr)
 	free(arr);
 }
 
+int		fill_f(t_all *all, char flag)
+{
+	if (flag == 'c' && !all->fc && !all->p)
+		all->fc = 'c';
+	else if (flag == 'f' && !all->ff)
+		all->ff = 'f';
+	else if (flag == 'v' && !all->fv && !all->p)
+		all->fv = 'v';
+	else if (flag == 's' && !all->fs && !all->p)
+		all->fs = 's';
+	else if (flag == 'd' && !all->fd && all->p)
+		all->fd = 'd';
+	else if (flag == 't' && !all->ft && all->p)
+		all->ft = 't';
+	else
+		return (0);
+	return (1);
+}
+
 int		fill_flags(t_all *all, char *flags, int *i)
 {
 	if (ft_isnumber(flags))
@@ -29,19 +48,9 @@ int		fill_flags(t_all *all, char *flags, int *i)
 	if (*flags != '-')
 		return (0);
 	flags++;
-	while (ft_is_in_charset(*flags, "cfsvd"))
+	while (ft_is_in_charset(*flags, "cfsvdt"))
 	{
-		if (*flags == 'c' && !all->fc && !all->p)
-			all->fc = 'c';
-		else if (*flags == 'f' && !all->ff)
-			all->ff = 'f';
-		else if (*flags == 'v' && !all->fv && !all->p)
-			all->fv = 'v';
-		else if (*flags == 's' && !all->fs && !all->p)
-			all->fs = 's';
-		else if (*flags == 'd' && !all->fd && all->p)
-			all->fd = 'd';
-		else
+		if (!fill_f(all, *flags))
 			return (0);
 		flags++;
 	}

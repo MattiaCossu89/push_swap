@@ -6,7 +6,7 @@
 /*   By: mcossu <mcossu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 17:07:01 by mcossu            #+#    #+#             */
-/*   Updated: 2021/03/26 17:11:06 by mcossu           ###   ########.fr       */
+/*   Updated: 2021/03/26 17:28:49 by mcossu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ void	print_sorted(t_all *all, int i)
 			color = GRN;
 		ft_printf(" %s%*d%s |\n", color,
 			all->maxnl, all->insort[i]->n, "\033[0m");
-
 	}
 	else
 		ft_printf(" %*d |\n",
@@ -46,10 +45,10 @@ void	print_body(t_all *all)
 	t_ilst	*a;
 	t_ilst	*b;
 
-	i = 0;
+	i = -1;
 	a = all->a.ss;
 	b = all->b.ss;
-	while (i < all->len)
+	while (++i < all->len)
 	{
 		if (i < all->a.len)
 			ft_printf("\t| %*d |",
@@ -66,7 +65,6 @@ void	print_body(t_all *all)
 		print_sorted(all, i);
 		a = a ? a->next : 0;
 		b = b ? b->next : 0;
-		i++;
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: mcossu <mcossu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 11:04:19 by mcossu            #+#    #+#             */
-/*   Updated: 2021/03/26 17:23:29 by mcossu           ###   ########.fr       */
+/*   Updated: 2021/03/26 17:29:08 by mcossu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ typedef struct	s_ops
 	int		rrr;
 	int		tot;
 }				t_ops;
-
 
 typedef struct	s_all
 {

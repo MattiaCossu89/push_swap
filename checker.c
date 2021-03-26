@@ -6,7 +6,7 @@
 /*   By: mcossu <mcossu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 10:51:52 by mcossu            #+#    #+#             */
-/*   Updated: 2021/03/26 17:06:38 by mcossu           ###   ########.fr       */
+/*   Updated: 2021/03/26 17:28:01 by mcossu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ void	get_in(t_all *all)
 		if (all->fv)
 			print_stacks(all);
 		printf("%s\n", line);
-
 		free(line);
 		line = 0;
 	}

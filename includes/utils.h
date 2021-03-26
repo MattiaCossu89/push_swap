@@ -6,7 +6,7 @@
 /*   By: mcossu <mcossu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 17:23:34 by mcossu            #+#    #+#             */
-/*   Updated: 2021/03/26 17:23:35 by mcossu           ###   ########.fr       */
+/*   Updated: 2021/03/26 17:31:14 by mcossu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,11 @@ void	fill_stack_a(t_all *all);
 void	exit_all(t_all *all);
 void	exit_error(t_all *all);
 void	exit_error_avv(t_all *all, char ***av);
-void	free_avv(char  ***avv);
+void	free_avv(char ***avv);
 int		min(int a, int b);
 t_ilst	**ft_realloc_arr(t_ilst **in, size_t n);
 void	clear_lists(t_all *all);
+void	free_arr(char **arr);
+int		fill_flags(t_all *all, char *flags, int *i);
+char	***parse_input(t_all *all, int ac, char **av);
 #endif

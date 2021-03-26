@@ -6,7 +6,7 @@
 /*   By: mcossu <mcossu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 15:48:25 by mcossu            #+#    #+#             */
-/*   Updated: 2021/03/26 16:42:38 by mcossu           ###   ########.fr       */
+/*   Updated: 2021/03/26 17:26:59 by mcossu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,6 @@ void	swap(t_ilst **stack)
 		t1->next->prev = t1;
 	}
 	*stack = t2;
-	// temp = stack->n;
-	// stack->n = stack->next->n;
-	// stack->next->n = temp;
-	// temp = stack->ri;
-	// stack->ri = stack->next->ri;
-	// stack->next->ri = temp;
 }
 
 void	sa(t_all *all)

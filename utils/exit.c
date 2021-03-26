@@ -6,7 +6,7 @@
 /*   By: mcossu <mcossu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 17:24:50 by mcossu            #+#    #+#             */
-/*   Updated: 2021/03/26 17:24:51 by mcossu           ###   ########.fr       */
+/*   Updated: 2021/03/26 17:27:32 by mcossu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	exit_error(t_all *all)
 	exit_all(all);
 }
 
-void	free_avv(char  ***avv)
+void	free_avv(char ***avv)
 {
 	int	i;
 	int	j;

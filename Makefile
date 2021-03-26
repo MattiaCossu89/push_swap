@@ -11,6 +11,7 @@ SRCSPS	=	push_swap.c \
 			sort/sort.c \
 			utils/exit.c \
 			utils/fill_input.c \
+			utils/fill_input1.c \
 			utils/min_n_max.c \
 			utils/sort_utils.c
 
@@ -22,6 +23,7 @@ SRCSCH	=	checker.c \
 			op/swap.c \
 			utils/exit.c \
 			utils/fill_input.c \
+			utils/fill_input1.c \
 			utils/print.c \
 			utils/print1.c
 

@@ -6,7 +6,7 @@
 /*   By: mcossu <mcossu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 10:51:52 by mcossu            #+#    #+#             */
-/*   Updated: 2021/03/26 16:26:13 by mcossu           ###   ########.fr       */
+/*   Updated: 2021/03/26 17:06:38 by mcossu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,8 @@ int		main(int ac, char **av)
 		init_file(&all);
 	get_in(&all);
 	check_out(&all);
+	if (all.fs)
+		print_stat(&all);
 	exit_all(&all);
 	return (0);
 }

@@ -22,7 +22,8 @@ SRCSCH	=	checker.c \
 			op/swap.c \
 			utils/exit.c \
 			utils/fill_input.c \
-			utils/print.c
+			utils/print.c \
+			utils/print1.c
 
 OBJSPS	= ${SRCSPS:.c=.o}
 
@@ -81,8 +82,8 @@ fclean	: clean
 		rm -rf $(CH) $(PS)
 
 norme:
-	~/.norminette/norminette.rb -R CheckForbiddenSourceHeader $(SRCSPS) $(SRCSCH)
-	~/.norminette/norminette.rb -R CheckDefine $(INCSCH)/*.h
+	norminette -R CheckForbiddenSourceHeader $(SRCSPS) $(SRCSCH)
+	norminette -R CheckDefine $(INCSCH)/*.h
 
 re		: fclean all
 

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   print.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mcossu <mcossu@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/03/26 17:23:18 by mcossu            #+#    #+#             */
+/*   Updated: 2021/03/26 17:23:19 by mcossu           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PRINT_H
 # define PRINT_H
 
@@ -16,5 +28,12 @@
 void	print_input(t_all *all);
 void	print_stack(t_ilst *lst);
 void	print_stacks(t_all *all);
-
+void	print_sorted(t_all *all, int i);
+void	print_body(t_all *all);
+void	print_stack(t_ilst *lst);
+void	print_line(t_all *all);
+void	print_head(t_all *all);
+void	print_stat(t_all *all);
+void	mnm_a(t_all *all, t_ilst **min, t_ilst **max);
+int		pos_a(t_all *all, t_ilst *tof);
 #endif

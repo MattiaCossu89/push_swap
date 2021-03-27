@@ -63,7 +63,6 @@ SRCS	=	ft_atoi.c \
 			get_next_line_utils.c
 
 OBJS	= $(SRCS:.c=.o)
-OBJS_B	= $(SRCS_B:.c=.o)
 CC 		= gcc
 RM		= rm -f
 LIBC	= ar -rcs
@@ -88,6 +87,10 @@ fclean: clean
 
 clean:
 	$(RM) $(OBJS) $(OBJS_B)
+
+norme :
+	norminette -R CheckForbiddenSourceHeader $(SRCS)
+	norminette -R CheckDefine $(INCS)/*.h
 
 re: fclean all
 

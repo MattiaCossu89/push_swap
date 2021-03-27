@@ -6,7 +6,7 @@
 /*   By: mcossu <mcossu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/18 11:30:25 by mcossu            #+#    #+#             */
-/*   Updated: 2021/01/20 16:17:26 by mcossu           ###   ########.fr       */
+/*   Updated: 2021/03/27 15:38:50 by mcossu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ char			p_req_d(long long int nbr, t_par *g_cur)
 	return (1);
 }
 
-char	p_req_i(long long int nbr, t_par *g_cur)
+char			p_req_i(long long int nbr, t_par *g_cur)
 {
 	return (p_req_d(nbr, g_cur));
 }

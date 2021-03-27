@@ -6,7 +6,7 @@
 /*   By: mcossu <mcossu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/16 14:16:41 by mcossu            #+#    #+#             */
-/*   Updated: 2021/01/20 15:41:10 by mcossu           ###   ########.fr       */
+/*   Updated: 2021/03/27 15:42:10 by mcossu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,11 +109,6 @@ char	check_lenght(const char **str, t_par *g_cur)
 		return (1);
 	}
 	return (0);
-}
-
-char	check_types(const char **str, const char *charset)
-{
-	return (ft_is_in_charset(*(*str), charset));
 }
 
 void	check_all(const char **str, t_par *g_cur)

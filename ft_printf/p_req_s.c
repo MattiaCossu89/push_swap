@@ -6,7 +6,7 @@
 /*   By: mcossu <mcossu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/18 15:45:24 by mcossu            #+#    #+#             */
-/*   Updated: 2021/01/20 14:44:27 by mcossu           ###   ########.fr       */
+/*   Updated: 2021/03/27 15:38:14 by mcossu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ size_t	ft_lstrlen(wchar_t *str)
 int		ft_putlstr(wchar_t *str, size_t len)
 {
 	int			res;
-	wchar_t	*p_str;
+	wchar_t		*p_str;
 
 	res = (int)len;
 	p_str = str;
@@ -35,7 +35,7 @@ int		ft_putlstr(wchar_t *str, size_t len)
 		len = 0;
 	res = (int)len;
 	while ((res)--)
-		write(1,(p_str++), 1);
+		write(1, (p_str++), 1);
 	return (len);
 }
 
@@ -70,6 +70,7 @@ char	p_req_s(const char *str, t_par *g_cur)
 {
 	size_t f_len;
 	size_t s_len;
+
 	if (g_cur->l)
 		return (p_req_ls((wchar_t *)str, g_cur));
 	if (!str && g_cur->prec_len < 6 && g_cur->prec_len >= 0)

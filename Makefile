@@ -84,6 +84,8 @@ fclean	: clean
 		rm -rf $(CH) $(PS)
 
 norme:
+	make norme -C ./libft
+	make norme -C ./ft_printf
 	norminette -R CheckForbiddenSourceHeader $(SRCSPS) $(SRCSCH)
 	norminette -R CheckDefine $(INCSCH)/*.h
 

@@ -6,44 +6,46 @@
 /*   By: mcossu <mcossu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/18 16:24:52 by mcossu            #+#    #+#             */
-/*   Updated: 2021/01/20 14:44:37 by mcossu           ###   ########.fr       */
+/*   Updated: 2021/03/27 15:37:29 by mcossu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char print_unicode(wchar_t c)
+void	set_str(unsigned char *str, wchar_t c, size_t *sz)
 {
-    unsigned char str[4];
-    size_t sz = 0;
+	str[0] = ((c >> 18) & 0x07) | 0xF0;
+	str[1] = ((c >> 12) & 0x3F) | 0x80;
+	str[2] = ((c >> 6) & 0x3F) | 0x80;
+	str[3] = ((c >> 0) & 0x3F) | 0x80;
+	*sz = 4;
+}
 
-    if (c < 0x80) {
-        str[0] = ((c >> 0) & 0x7F) | 0x00;
-        sz = 1;
-    }
-    else if (c < 0x0800) {
-        str[0] = ((c >> 6) & 0x1F) | 0xC0;
-        str[1] = ((c >> 0) & 0x3F) | 0x80;
-        sz = 2;
-    }
-    else if (c < 0x010000) {
-        // ToDo: look for surrogates and error out on them
-        str[0] = ((c >> 12) & 0x0F) | 0xE0;
-        str[1] = ((c >> 6 ) & 0x3F) | 0x80;
-        str[2] = ((c >> 0 ) & 0x3F) | 0x80;
-        sz = 3;
-    }
-    else if (c < 0x110000) {
-        str[0] = ((c >> 18) & 0x07) | 0xF0;
-        str[1] = ((c >> 12) & 0x3F) | 0x80;
-        str[2] = ((c >> 6 ) & 0x3F) | 0x80;
-        str[3] = ((c >> 0 ) & 0x3F) | 0x80;
-        sz = 4;
-    }
-    else {
-      return (0);
-    }
-    write(1, str, sz);
+char	print_unicode(wchar_t c)
+{
+	unsigned char	str[4];
+	size_t			sz;
+
+	if (c < 0x80 && (sz = 1))
+		str[0] = ((c >> 0) & 0x7F) | 0x00;
+	else if (c < 0x0800)
+	{
+		str[0] = ((c >> 6) & 0x1F) | 0xC0;
+		str[1] = ((c >> 0) & 0x3F) | 0x80;
+		sz = 2;
+	}
+	else if (c < 0x010000)
+	{
+		str[0] = ((c >> 12) & 0x0F) | 0xE0;
+		str[1] = ((c >> 6) & 0x3F) | 0x80;
+		str[2] = ((c >> 0) & 0x3F) | 0x80;
+		sz = 3;
+	}
+	else if (c < 0x110000)
+		set_str(str, c, &sz);
+	else
+		return (0);
+	write(1, str, sz);
 	return (1);
 }
 

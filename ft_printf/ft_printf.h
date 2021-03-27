@@ -6,7 +6,7 @@
 /*   By: mcossu <mcossu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/16 10:37:12 by mcossu            #+#    #+#             */
-/*   Updated: 2021/01/20 16:08:48 by mcossu           ###   ########.fr       */
+/*   Updated: 2021/03/27 15:39:00 by mcossu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ typedef struct	s_par
 	char		error;
 	int			*res;
 	const char	*base;
-	va_list	arg;
+	va_list		arg;
 }				t_par;
 
 int				ft_printf(const char *str, ...);

@@ -6,12 +6,13 @@
 #    By: mcossu <mcossu@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/16 09:12:50 by mcossu            #+#    #+#              #
-#    Updated: 2021/01/20 10:31:09 by mcossu           ###   ########.fr        #
+#    Updated: 2021/03/27 15:43:12 by mcossu           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=   libftprintf.a
 SRCS	=	check_fun.c \
+			check_types.c \
 			ft_nbrlen.c \
 			ft_printf.c \
 			ft_putstr.c \
@@ -58,6 +59,11 @@ fclean: clean
 clean:
 	make clean -C libft
 	$(RM) -f $(OBJS) $(OBJS_B)
+
+norme:
+	make norme -C libft
+	norminette -R CheckForbiddenSourceHeader $(SRCS)
+	norminette -R CheckDefine $(INCS)/*.h
 
 re: fclean all
 

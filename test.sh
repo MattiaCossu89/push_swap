@@ -8,8 +8,8 @@ for i in {1..10}
 do
 	arg=`ruby -e "puts (10..12).to_a.shuffle.join(' ')"`
 	check=`./push_swap $arg | wc -l`
-	sort=`./push_swap $arg | ./checker $arg`
-	if [[ $((check)) -lt 4 ]] && [[ $sort == "OK" ]]
+	sort=`./push_swap $arg | ./checker $arg | grep OK`
+	if [[ $((check)) -lt 4 ]] && [[ $sort ]]
 	then
 		printf "\033[0;90m \033[42m OK \033[0m "
 	else
@@ -22,10 +22,9 @@ printf "\n \033[0;90m \033[46m  --- Test sequenza di 5 --- \033[0m \n"
 for i in {1..600}
 do
 	arg=`ruby -e "puts (1..5).to_a.shuffle.join(' ')"`
-	printf "$arg"
 	check=`./push_swap $arg | wc -l`
-	sort=`./push_swap $arg | ./checker $arg`
-	if [[ $((check)) -lt 12 ]] && [[ $sort == "OK" ]]
+	sort=`./push_swap $arg | ./checker $arg | grep OK`
+	if [[ $((check)) -lt 12 ]] && [[ $sort ]]
 	then
 		printf "\033[0;90m \033[42m OK \033[0m "
 	else
@@ -39,8 +38,8 @@ for i in {1..600}
 do
 	arg=`ruby -e "puts (1..100).to_a.shuffle.join(' ')"`
 	check=`./push_swap $arg | wc -l`
-	sort=`./push_swap $arg | ./checker $arg`
-	if [[ $((check)) -lt 700 ]] && [[ $sort == "OK" ]]
+	sort=`./push_swap $arg | ./checker $arg | grep OK`
+	if [[ $((check)) -lt 700 ]] && [[ $sort ]]
 	then
 		printf "\033[0;90m \033[42m OK \033[0m "
 	else
@@ -54,8 +53,8 @@ for i in {1..600}
 do
 	arg=`ruby -e "puts (1..500).to_a.shuffle.join(' ')"`
 	check=`./push_swap $arg | wc -l`
-	sort=`./push_swap $arg | ./checker $arg`
-	if [[ $((check)) -lt 5500 ]] && [[ $sort == "OK" ]]
+	sort=`./push_swap $arg | ./checker $arg | grep OK`
+	if [[ $((check)) -lt 5500 ]] && [[ $sort ]]
 	then
 		printf "\033[0;90m \033[42m OK \033[0m "
 	else
